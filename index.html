@@ -7,29 +7,89 @@
     <!--material design 的字体和图标-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--reset.css-->
+    <link rel="stylesheet" href="library/css-reset/reset.css">
     <!--bootstrap-->
     <link rel="stylesheet" href="library/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <style>
-        h1 {
+
+        h2 {
             margin: 0;
             padding: 0;
         }
 
-        header {
+        #app {
+            width: 100%;
+            padding-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 440px;
+            color: #fff;
+            background: #3891F4;
+        }
+
+        .avatar {
+            height: 150px;
+            width: 150px;
+            margin-top: 100px;
+            background: url(http://img.hb.aicdn.com/19dd42725e125bb7424785afbddeee41d5eb13931b097-evWO7z_fw658) center no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            box-shadow: 5px 10px 10px #1565c0;
+        }
+
+        .welcome {
+            margin-top: 20px;
+            font-size: 24px;
+            font-family: "Comic Sans MS";
+        }
+
+        .main-paper {
+            padding: 36px;
+            margin-top: -100px;
+            width: 90%;
             height: 500px;
-            background: #2aabd2;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 5px 5px 10px #616161, -1px 1px 10px #616161;
         }
     </style>
 </head>
 <body>
+<div id="app">
+    <header class="nav">
 
-<header>
-    <h1>欢迎来到waka的博客</h1>
-</header>
+    </header>
 
+    <header class="header">
+        <div class="avatar"></div>
+        <div class="welcome">欢迎来到 waka 的博客</div>
+    </header>
+
+    <section class="main-paper">
+        <h2>文章分类</h2>
+    </section>
+</div>
+<!--jQuery-->
+<script src="library/jquery/jquery-3.1.1.min.js"></script>
 <!--bootstrap-->
 <script src="library/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <!--Vue.js-->
 <script src="library/vue/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {}
+    });
+</script>
 </body>
 </html>
