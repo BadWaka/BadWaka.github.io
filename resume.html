@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>resume</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/resume.css" rel="stylesheet">
+</head>
+<body>
+<section class="main">
+    <div class="title-row">
+        <h1 style="font-size: 36px">王凯</h1>
+        <div style="padding-left: 48px;font-size: 24px">两年工作经验 | 本科 | 前端开发工程师</div>
+    </div>
+
+    <div class="sm-title">基本信息</div>
+    <div class="base-info">
+        <div class="base-info-left">
+            <div class="base-info-item">姓名：王凯</div>
+            <div class="base-info-item">年龄：23</div>
+            <div class="base-info-item">电话：15652912603</div>
+            <div class="base-info-item">学校：华北电力大学（北京）</div>
+            <div class="base-info-item">个人博客：<a target="_blank" href="http://www.jianshu.com/u/d184d3ab9060">http://www.jianshu.com/u/d184d3ab9060</a>
+            </div>
+        </div>
+        <div class="base-info-right">
+            <div class="base-info-item">性别：男</div>
+            <div class="base-info-item">邮箱：waka931124@163.com</div>
+            <div class="base-info-item">专业：软件工程</div>
+            <div class="base-info-item">GitHub：<a href="https://github.com/badwaka" target="_blank">https://github.com/badwaka</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="sm-title">个人技能</div>
+    <ul class="skill">
+        <li v-for="skill in skills" class="skill-item" style="list-style: none">
+            <div class="point"></div>
+            <span style="font-weight: 900">-&nbsp;</span>{{skill}}
+        </li>
+    </ul>
+
+    <div class="sm-title">自我评价</div>
+    <ul class="skill">
+        <li v-for="selfAssessment in selfAssessments" class="skill-item">
+            <div class="point"></div>
+            <span style="font-weight: 900">-&nbsp;</span>{{selfAssessment}}
+        </li>
+    </ul>
+
+    <div class="sm-title">工作经验</div>
+    <section v-for="experience in experiences">
+        <div class="row">
+            <div class="company-name">{{experience.company}} | {{experience.job}} | {{experience.city}}</div>
+            <div>{{experience.beginTime}}-{{experience.endTime}}</div>
+        </div>
+
+        <div v-for="project in experience.projects">
+            <div class="skill-item">
+                <div class="point"></div>
+                {{project.name}}&nbsp;&nbsp;<a :href="project.link" target="_blank">{{project.link}}</a>
+            </div>
+            <ul v-for="intro in project.intros">
+                <li class="intro-item" style="position: relative">
+                    <div class="point-square"></div>
+                    <span style="font-weight: 900;vertical-align: top;position:absolute;top: 12px;left: 10px">-&nbsp;</span>
+                    <div v-html="intro" style="line-height: 1.9"></div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="sm-title">个人项目</div>
+    <section v-for="project in personalProjects">
+        <div class="skill-item">
+            <div class="point"></div>
+            {{project.name}} &nbsp;&nbsp;<a :href="project.link" target="_blank">{{project.link}}</a>
+        </div>
+        <ul v-for="intro in project.intros">
+            <li class="intro-item">
+                <div class="point-square"></div>
+                <span style="font-weight: 900">-&nbsp;</span> {{intro}}
+            </li>
+        </ul>
+    </section>
+
+</section>
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '.main',
+        data: {
+            skills: [
+                '掌握HTML、CSS、JS，熟悉ES6，了解TypeScript',
+                '熟悉Sass、Less，了解Stylus、PostCSS',
+                '掌握jQuery、React、Redux，熟悉微信小程序、Vue、AppCan.js(类Ionic的Hybrid框架)，了解React Native',
+                '熟练使用Webpack、Gulp；熟悉前端工程化和组件化开发思想',
+                '有后端开发经历，熟练使用Node、Express、Koa，了解MySQL，MongoDB',
+                '熟练使用npm，了解Yarn',
+                '有Android原生开发经历，熟悉Java、Android SDK及Android调试工具',
+                '日常开发使用macOS，WebStorm/VSCode，熟悉Git，熟练使用Linux命令',
+                '英语4级，阅读英文文档基本无障碍'
+            ],
+            selfAssessments: [
+                '有自己的技术博客，80余篇原创博客，乐于分享，热爱新技术',
+                '关注开源技术，技术视野开阔，学习能力强，能快速上手新技术，同时也能快速熟悉业务',
+                '211大学软件工程专业毕业，计算机基础扎实',
+                '理解前端工程化思想，对构建和持续集成有一定认识',
+                '理解组件化开发思想，有一定的设计和抽象能力，独立编写可复用的React组件及Node中间件',
+                '对后端技术和数据库有一定了解',
+                '熟悉Android原生技术，在移动端适配及原生能力开发调试有优势'
+            ],
+            experiences: [
+                {
+                    company: '北京云莱坞文化传媒有限公司',
+                    job: '前端开发工程师',
+                    city: '北京',
+                    beginTime: '2017.03.27',
+                    endTime: '2017.08.28',
+                    contents: [
+                        '1. 负责公司产品、项目的web前端开发及移动端开发和维护；',
+                        '2. 运用HTML、CSS将设计图转化为静态页面，运用JS及相关库实现交互效果开发；',
+                        '3. 根据用户要求与项目需求解决所需浏览器兼容性问题以及BUG；',
+                        '4. 利用AJAX与后端配合，进行数据逻辑的走通，完成数据交互、动态信息展现；',
+                        '5. 在公司内部进行前端技术分享；',
+                    ],
+                    projects: [{
+                        name: '云莱坞作家后台',
+                        link: 'http://user.yunlaiwu.com/',
+                        intros: [
+                            '该项目是云莱坞作家后台，主要功能有编辑个人信息、简历、作品，查看投稿、订单、关注等；',
+                            '负责整个作家后台的功能开发及维护，负责SPA基础工程的搭建与优化；',
+                            '前端页面使用 AntD+React+Redux+Immutable+ES6 进行开发；使用 webpack 进行构建打包；后端使用 Express+pm2 进行部署；',
+                            '在Node层使用ejs渲染页面，进行接口转发解决上传文件跨域的问题；',
+                            '我在完善功能样式后重构整个项目：使用AntD替代react-bootstrap重写样式，编写特殊组件完成需求并抽象出公共UI库；',
+                            '升级webpack及去除无用依赖库，重新配置基础构建工程，使编译打包后的文件大小缩减至30%；抽象出第三方依赖库作为vendor增强缓存策略；',
+                            '重写部分逻辑，聚合组件功能，并使用webpack分割打包代码，动态加载各个chunk包，以进行首页速度优化。'
+                        ]
+                    }, {
+                        name: '云莱坞官方网站',
+                        link: 'http://www.yunlaiwu.com/',
+                        intros: [
+                            '该项目是云莱坞官方网站，主要面向作家和制片人群体；',
+                            '主要负责 PC 端登录注册、闪电征稿、个人主页等模块，H5 端版权交易周、投票运营页等前端页面，及 node 中间层的开发与维护；',
+                            '前端页面使用 jQuery/Zepto+Less 进行开发；使用 Node+Express+ejs 作为中间层渲染页面和代理 php 端请求；使用 Gulp 构建打包；基于 LeanCloud 进行部署；',
+                            '在详情页及列表页通过Node层SSR渲染首屏数据增强SEO；使用百度统计、美洽等第三方工具统计流量和实现客服功能；',
+                            '使用reset.css统一样式；使用store.js统一本地储存；使用CDN加速图片及CSS、JS文件的加载；',
+                            '重构整个Node层代码，通过UA判断请求，手动代理移动端流量至另一机器集群进行流量压力分流；',
+                            '独立使用LeanCloudAPI、微信API，不依赖后端，开发完整的投票功能（PC结果页、微信端投票页）。'
+                        ]
+                    }]
+                },
+                {
+                    company: '正益移动互联科技股份有限公司（AppCan）',
+                    job: '前端开发工程师',
+                    city: '北京',
+                    beginTime: '2015.10',
+                    endTime: '2017.03.24',
+                    contents: [
+                        '1. 负责公司产品、项目的web前端开发及移动端开发和维护；',
+                        '2. 运用HTML、CSS将设计图转化为静态页面，运用JS及相关库实现交互效果开发；',
+                        '3. 根据用户要求与项目需求解决所需浏览器兼容性问题以及BUG；',
+                        '4. 利用AJAX与后端配合，进行数据逻辑的走通，完成数据交互、动态信息展现；',
+                        '5. 负责公司部分Android原生端插件的开发和维护；',
+                        '6. 负责公司项目的前端及Android原生端技术支持；',
+                        '7. 在公司内部进行前端技术分享；',
+                        '8. 负责维护公司论坛AppCan社区，并进行一些技术方面的答疑。'
+                    ],
+                    projects: [{
+                        name: '正益工作 Hybrid App（已上线）',
+                        link: 'http://work.zyhao.com/',
+                        intros: [
+                            '该项目是企业移动门户管理及移动办公的一体式企业级解决方案；',
+                            '负责正益工作移动端App功能门户、IM会话、企业通讯录、考勤签到、工单任务报告等模块的功能开发及维护；',
+                            '使用Zepto.js+Backbone.js+AppCan.js构建的Hybrid App，主要负责的前端页面功能、样式开发；',
+                            '该项目门户模块源代码已被中国电建、上海卡斯柯、万科集团、福田汽车、奥凯航空等企业级用户所采用；',
+                            '我在完善功能样式后使用Vue.js重构部分项目；使用Sass和flex布局重写UI，代码量减少20%；'
+                        ]
+                    }, {
+                        name: '正益移动-微信小程序（已上线）',
+                        intros: [
+                            '该项目是公司内部打卡。订餐管理的微信小程序，主要功能有打卡、订餐、人员管理、订餐管理；',
+                            '负责全部前端页面的设计、界面实现及功能实现；负责小程序的接入和上线发布；',
+                            '使用微信小程序框架MINA，及微信官方样式库WeUI实现前端界面；',
+                            '配合后端实现小程序登录流程，并完成前后端接口的联调对接工作。'
+                        ]
+                    }, {
+                        name: '其余使用AppCan.js上线的一些Hybrid项目',
+                        intros: [
+                            '福田汽车-移动门户（已上线）&nbsp;&nbsp;<a href="https://mobin.foton.com.cn/app/" target="_blank">https://mobin.foton.com.cn/app/</a>;',
+                            '乌鲁木齐银行-雪莲伙伴（已上线）&nbsp;&nbsp;<a href="http://www.uccb.com.cn/phone.aspx" target="_blank">http://www.uccb.com.cn/phone.aspx</a>：<br>同时懂得前端技术和Android原生技术，将原本需要两个人的任务一个人完成，并将工时缩短至一半；',
+                            '中国电力建设集团-电建通（已上线）&nbsp;&nbsp;<a href="http://pcm.powerchina.cn/" target="_blank">http://pcm.powerchina.cn/</a>：<br>根据华为提供的eSpaceSDK，大量使用Broadcast广播接收器和Handler多线程编程，为JS端提供Voip语音通话功能；<br>开发期间由于文档、SDK设计问题，与华为技术人员进行大量邮件、电话沟通，将语音通话功能如期上线；',
+                            'Android原生插件开发：<br>杭州指端项目：开发Android计步器模块，实现多传感器计步，数据库缓存数据及前台服务；<br>绫致服装项目：开发Android图片标签模块，实现给图片添加标签、编辑、移动的功能；<br>正益工作项目：开发Android照相机模块，实现自定义Android照相机；<br>协同开发项目：开发悬浮窗原生View，并实现上传崩溃日志和log功能；<br>百年人寿项目：根据mupdf，二次开发Android PDF解析器模块；<br>江苏烟草项目：开发Android NFC读取模块；<br>上海凯泉项目：负责百度地图、百度导航SDK的二次封装。'
+                        ]
+                    },
+//                        {
+//                            name: '企业级项目Android插件开发',
+//                            intros: [
+//                                '杭州指端项目 开发Android计步器模块，实现多传感器计步，数据库缓存数据及前台服务；',
+//                                '绫致服装项目 开发Android图片标签模块，实现给图片添加标签、编辑、移动的功能；',
+//                                '正益工作项目 开发Android照相机模块，实现自定义Android照相机；',
+//                                '协同开发项目 开发悬浮窗原生View，并实现上传崩溃日志和log功能；',
+//                                '百年人寿项目 根据mupdf，二次开发Android PDF解析器模块；',
+//                                '江苏烟草项目 开发Android NFC读取模块；',
+//                                '上海凯泉项目 负责百度地图、百度导航SDK的二次封装。'
+//                            ]
+//                        }
+                    ]
+                },
+//                {
+//                    company: '北京观天智创科技有限公司',
+//                    job: 'Android开发工程师（实习）',
+//                    city: '北京',
+//                    beginTime: '2015.03',
+//                    endTime: '2015.09',
+//                    projects: [
+////                        {
+////                            name: '旺铺帮平板点餐',
+////                            intros: [
+////                                '1. 该项目是面向餐馆顾客的一款平板点餐App，主要功能有用户点餐、管理员设置菜单；',
+////                                '2. 负责用户登录模块和用户点餐模块的功能开发及维护；',
+////                                '3. 使用Android布局实现复杂页面；使用Framework分割UI视图；使用HttpClient进行网络请求并使用handler异步更新UI。'
+////                            ]
+////                        },
+//                        {
+//                            name: '旺铺帮掌柜宝（已上线）',
+//                            link: 'http://www.wangpupos.com/serve/twodownload.html',
+//                            intros: [
+//                                '该项目是面向餐厅管理人员的一款移动管理App，负责该项目Android客户端，店铺进销管理、营业流水管理模块的开发及维护；',
+//                                '根据需求文档，使用Android各种布局实现页面，使用Handler和多线程技术请求网络并异步更新UI，自定义View实现简单的条形图。',
+//                            ]
+//                        },
+//                        {
+//                            name: '我们去哪儿（已上线）',
+//                            link: 'http://sj.qq.com/myapp/detail.htm?apkName=com.travel.travel_app',
+//                            intros: [
+//                                '该项目是一款旅行社交类App，为用户提供一个在线交流、线下出游的社交平台；',
+//                                '负责该项目的Android客户端功能开发及维护；',
+//                                '根据产品需求，使用android布局和各类控件实现各种复杂界面；',
+//                                '使用Handler和多线程请求网络并异步更新UI；',
+//                                '使用内置SQLite数据库存取数据；使用JUnit进行单元测试。'
+//                            ]
+//                        }
+//                    ]
+//                }
+            ],
+            personalProjects: [
+                {
+                    name: '个人博客',
+                    link: 'https://github.com/badwaka/blog-waka-by-vue',
+                    intros: [
+                        '个人博客全栈作品。遵循前端工程化和组件化思想,',
+                        '使用Vue2+ES6+MuseUI编写前端代码，使用Sass+PostCSS编写页面样式,使用webpack编译打包，',
+                        '使用Express+MongoDB搭建后台服务，并独立完成linux环境的服务器部署'
+                    ]
+                }, {
+                    name: 'gallery-by-react-waka',
+                    link: 'https://github.com/badwaka/gallery-by-react-waka',
+                    intros: ['React+webpack实现的画廊程序']
+                }, {
+                    name: 'lottery-by-vue',
+                    link: 'https://github.com/badwaka/lottery-by-vue',
+                    intros: ['Vue.js+Materialize实现的简单的抽奖程序']
+                }, {
+                    name: 'WakaPedometer',
+                    link: 'https://github.com/badwaka/WakaPedometer',
+                    intros: ['Android原生计步器程序，使用开源库Volley、fastjson']
+                }, {
+                    name: 'SmallDianPing',
+                    link: 'https://github.com/badwaka/SmallDianPing',
+                    intros: ['Android原生仿美团订餐程序，使用高德地图SDK']
+                }]
+        }
+    });
+</script>
+</body>
+</html>
