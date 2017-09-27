@@ -15,12 +15,13 @@
 <body>
 <script src="library/three/three.js"></script>
 <script>
+    // 场景
     var scene = new THREE.Scene();
-
+    // 透视相机
     var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
+    // 渲染器
     var renderer = new THREE.WebGLRenderer();
-
+    // 设置渲染器的大小为窗口的内宽度，也就是内容区的宽度
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     document.body.appendChild(renderer.domElement);
