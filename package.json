@@ -1,7 +1,7 @@
 {
   "name": "badwaka.github.io",
   "version": "1.0.0",
-  "description": "",
+  "description": "![](http://upload-images.jianshu.io/upload_images/1828354-bde6754c0abf91e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) ![](http://upload-images.jianshu.io/upload_images/1828354-09cf370f7f1546ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,5 +19,7 @@
   "dependencies": {
     "keycode": "^2.1.8",
     "muse-ui": "^2.0.0-rc.5"
-  }
+  },
+  "devDependencies": {},
+  "keywords": []
 }
