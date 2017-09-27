@@ -18,7 +18,9 @@
   "homepage": "https://github.com/BadWaka/BadWaka.github.io#readme",
   "dependencies": {
     "keycode": "^2.1.8",
-    "muse-ui": "^2.0.0-rc.5"
+    "muse-ui": "^2.0.0-rc.5",
+    "three": "^0.87.1",
+    "vue": "^2.4.4"
   },
   "devDependencies": {},
   "keywords": []
