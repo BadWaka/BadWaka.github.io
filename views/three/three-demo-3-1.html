@@ -93,12 +93,15 @@
         initScene();
         initLight();
         initObject();
-        renderer.clear();
-        renderer.render(scene, camera);
+//        renderer.clear();
+//        renderer.render(scene, camera);
+        animation();
     }
 
     function animation() {
         camera.position.x = camera.position.x + 1;
+        renderer.render(scene, camera);
+        requestAnimationFrame(animation);
     }
 </script>
 </body>
