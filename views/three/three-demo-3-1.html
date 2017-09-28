@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>3</title>
+    <title>3-1</title>
     <style>
         html, body, canvas {
             margin: 0;
@@ -76,53 +76,14 @@
     var cube;
 
     function initObject() {
-        var geometry = new THREE.Geometry();
-        geometry.vertices.push(new THREE.Vector3(-500, 0, 0));
-        geometry.vertices.push(new THREE.Vector3(500, 0, 0));
-
-        for (var i = 0; i <= 20; i++) {
-            var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({
-                color: 0x000000,
-                opacity: 0.2
-            }));
-            line.position.z = (i * 50) - 500;
-            scene.add(line);
-
-            var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({
-                color: 0x000000,
-                opacity: 0.2
-            }));
-            line.position.x = (i * 50) - 500;
-            line.rotation.y = 90 * Math.PI / 180;
-            scene.add(line);
-        }
-
-        // Y坐标
-        var lineY = new THREE.Line(geometry, new THREE.LineBasicMaterial({
-            color: 0xFFD700,    // 黄色
-            opacity: 0.2
-        }));
-        lineY.position.y = 500;
-        lineY.rotation.z = 90 * Math.PI / 180;
-        scene.add(lineY);
-
-        // X坐标
-        var lineX = new THREE.Line(geometry, new THREE.LineBasicMaterial({
-            color: 0xFF00FF,    // 紫色
-            opacity: 0.2
-        }));
-        lineX.position.x = 500;
-        scene.add(lineX);
-
-        // Z坐标
-        var lineZ = new THREE.Line(geometry, new THREE.LineBasicMaterial({
-            color: 0xEE3B3B,    // 红色
-            opacity: 0.2
-        }));
-        lineZ.position.z = 500;
-        lineZ.rotation.y = 90 * Math.PI / 180;
-        scene.add(lineZ);
-
+        // 新建一个圆筒
+        var geometry = new THREE.CylinderGeometry(100, 150, 400);
+        var material = new THREE.MeshLambertMaterial({
+            color: 0xffff00
+        });
+        var mesh = new THREE.Mesh(geometry, material);
+        mesh.position = new THREE.Vector3(0, 0, 0);
+        scene.add(mesh);
     }
 
     // 开始画3D
@@ -136,6 +97,9 @@
         renderer.render(scene, camera);
     }
 
+    function animation() {
+        camera.position.x = camera.position.x + 1;
+    }
 </script>
 </body>
 </html>
