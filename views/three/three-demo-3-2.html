@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>3-2</title>
+    <title>3-2 移动自身</title>
     <style>
         html, body, canvas {
             margin: 0;
@@ -23,6 +23,7 @@
 <body onload="threeStart()">
 <div id="canvas-frame"></div>
 <script src="../../library/three/three.js"></script>
+<script src="../../library/stats/stats.js"></script>
 <script>
 
     // 渲染器
@@ -104,6 +105,18 @@
         renderer.render(scene, camera);
         requestAnimationFrame(animation);
     }
+
+    var stats = new Stats();
+    stats.setMode(0);   // 0: fps, 1: ms
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild(stats.domElement);
+    setInterval(function () {
+        stats.begin();
+        stats.end();
+    }, 1000 / 60);
+
 </script>
 </body>
 </html>
