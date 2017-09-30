@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算icon数值</title>
+</head>
+<body>
+<section>
+    <input id="iconNumberInput" type="number">
+    <div id="result"></div>
+</section>
+<script>
+    window.onload = function () {
+        var iconNumberInput = document.querySelector('#iconNumberInput');
+        var result = document.querySelector('#result');
+        iconNumberInput.addEventListener('change', function () {
+            console.log('iconNumberInput value', iconNumberInput.value);
+            var value = parseInt(iconNumberInput.value);
+            var newValue = '&#xe' + (1536 + value).toString(16);
+            console.log('newValue', newValue);
+            result.innerHTML = newValue;
+        });
+    };
+</script>
+</body>
+</html>
