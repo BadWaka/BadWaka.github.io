@@ -24,6 +24,8 @@
     "three": "^0.87.1",
     "vue": "^2.4.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "less": "^3.0.0-alpha.3"
+  },
   "keywords": []
 }

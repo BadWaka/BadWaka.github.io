@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>h5预览编辑页</title>
+    <!--引入样式-->
+    <link rel="stylesheet/less" href="../stylesheets/h5_preview_edit.less"/>
+    <!--引入 less 解析-->
+    <script src="../library/less/less.min.js"></script>
+</head>
+
+<body>
+
+<section id="app" class="app">
+    <!--预览-->
+    <section class="preview">
+        <div class="img">
+            <img :src="left.img" alt="">
+        </div>
+
+        <div class="text">
+            {{left.text}}
+        </div>
+    </section>
+    <!--右侧-->
+    <section class="right">
+
+    </section>
+</section>
+
+</body>
+
+<script src="../library/vue/vue.js"></script>
+<script>
+    window.onload = function () {
+        var app = new Vue({
+            el: '#app',
+            data: {
+                left: {
+                    img: 'https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=28cc2f9032c79f3d8fe1e336829aaa2c/6a63f6246b600c3366b5b4a7134c510fd8f9a195.jpg',
+                    text: '《魔兽世界》（World of Warcraft）是由著名游戏公司暴雪娱乐所制作的第一款网络游戏，属于大型多人在线角色扮演游戏。游戏以该公司出品的即时战略游戏《魔兽争霸》的剧情为历史背景，依托魔兽争霸的历史事件和英雄人物，魔兽世界有着完整的历史背景时间线。[1]  玩家在魔兽世界中冒险、完成任务、新的历险、探索未知的世界、征服怪物等。',
+                }
+            }
+        });
+    };
+</script>
+</html>
