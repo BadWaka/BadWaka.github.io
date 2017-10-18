@@ -26,15 +26,17 @@
         <!--列表-->
         <ul class="list">
             <!--项-->
-            <li class="item">
-
+            <li v-for="(item,index) in left.list" :class="item.class" @click="listItemClick(item,index)">
+                <img width="30" :src="item.iconSrc" alt="">
+                <span>{{item.text}}</span>
+                <span>{{item.rightText}}</span>
             </li>
         </ul>
     </section>
 
     <!--右侧-->
     <section class="right">
-
+        {{currentSelectedDom}}
     </section>
 </section>
 
@@ -47,9 +49,10 @@
             el: '#app',
             data: {
                 // 当前选中 dom
-                currentSelectedDom: 'img',
+                currentSelectedDom: '',
                 // 左侧 preview
                 left: {
+                    // 图片
                     img: {
                         // 类
                         class: {
@@ -59,6 +62,7 @@
                         },
                         src: 'https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=28cc2f9032c79f3d8fe1e336829aaa2c/6a63f6246b600c3366b5b4a7134c510fd8f9a195.jpg'
                     },
+                    // 文本
                     text: {
                         class: {
                             pointer: true,
@@ -67,7 +71,27 @@
                         },
                         text: '《魔兽世界》（World of Warcraft）是由著名游戏公司暴雪娱乐所制作的第一款网络游戏，属于大型多人在线角色扮演游戏。游戏以该公司出品的即时战略游戏《魔兽争霸》的剧情为历史背景，依托魔兽争霸的历史事件和英雄人物，魔兽世界有着完整的历史背景时间线。[1]  玩家在魔兽世界中冒险、完成任务、新的历险、探索未知的世界、征服怪物等。'
                     },
-
+                    // 列表
+                    list: [
+                        {
+                            class: {
+                                item: true,
+                                border: false,
+                            },
+                            iconSrc: 'http://www.easyicon.net/api/resizeApi.php?id=1190108&size=128',
+                            text: '文字文字文字',
+                            rightText: '右侧文字'
+                        },
+                        {
+                            class: {
+                                item: true,
+                                border: false,
+                            },
+                            iconSrc: 'http://www.easyicon.net/api/resizeApi.php?id=1190113&size=128',
+                            text: '文字文字文字',
+                            rightText: '右侧文字'
+                        },
+                    ]
                 }
             },
             methods: {
@@ -83,11 +107,20 @@
                     this.left.text.class.border = true;
                     this.currentSelectedDom = 'text';
                 },
+                // 列表项点击
+                listItemClick: function (item, index) {
+                    this.clearAllBorder();
+                    this.left.list[index].class.border = true;
+                    this.currentSelectedDom = 'listItem' + index;
+                },
                 // 清除所有 border
                 clearAllBorder: function () {
                     this.currentSelectedDom = '';
                     this.left.img.class.border = false;
                     this.left.text.class.border = false;
+                    this.left.list.forEach(function (item) {
+                        item.class.border = false;
+                    });
                 }
             }
         });
