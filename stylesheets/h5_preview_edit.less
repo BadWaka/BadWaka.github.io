@@ -2,6 +2,11 @@ html, body {
   margin: 0;
 }
 
+.border {
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+
 .app {
   display: flex;
   padding: 30px;
@@ -13,6 +18,13 @@ html, body {
     height: 600px;
     border: 1px solid #000;
     overflow: auto;
+
+    // 图片
+    .img {
+      padding-bottom: 56.5%;
+      background: no-repeat center;
+      background-size: cover;
+    }
   }
 
   // 右侧

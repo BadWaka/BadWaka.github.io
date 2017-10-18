@@ -13,16 +13,18 @@
 <body>
 
 <section id="app" class="app">
+
     <!--预览-->
     <section class="preview">
-        <div class="img">
-            <img :src="left.img" alt="">
+        <!--图片-->
+        <div :class="left.img.class" :style="{backgroundImage: 'url('+left.img.src+')'}" @click="imgClick">
         </div>
-
-        <div class="text">
-            {{left.text}}
+        <!--文字-->
+        <div :class="left.text.class" @click="textClick">
+            {{left.text.text}}
         </div>
     </section>
+
     <!--右侧-->
     <section class="right">
 
@@ -37,9 +39,46 @@
         var app = new Vue({
             el: '#app',
             data: {
+                // 当前选中 dom
+                currentSelectedDom: 'img',
+                // 左侧 preview
                 left: {
-                    img: 'https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=28cc2f9032c79f3d8fe1e336829aaa2c/6a63f6246b600c3366b5b4a7134c510fd8f9a195.jpg',
-                    text: '《魔兽世界》（World of Warcraft）是由著名游戏公司暴雪娱乐所制作的第一款网络游戏，属于大型多人在线角色扮演游戏。游戏以该公司出品的即时战略游戏《魔兽争霸》的剧情为历史背景，依托魔兽争霸的历史事件和英雄人物，魔兽世界有着完整的历史背景时间线。[1]  玩家在魔兽世界中冒险、完成任务、新的历险、探索未知的世界、征服怪物等。',
+                    img: {
+                        // 类
+                        class: {
+                            img: true,
+                            border: false,
+                        },
+                        src: 'https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=28cc2f9032c79f3d8fe1e336829aaa2c/6a63f6246b600c3366b5b4a7134c510fd8f9a195.jpg'
+                    },
+                    text: {
+                        class: {
+                            text: true,
+                            border: false,
+                        },
+                        text: '《魔兽世界》（World of Warcraft）是由著名游戏公司暴雪娱乐所制作的第一款网络游戏，属于大型多人在线角色扮演游戏。游戏以该公司出品的即时战略游戏《魔兽争霸》的剧情为历史背景，依托魔兽争霸的历史事件和英雄人物，魔兽世界有着完整的历史背景时间线。[1]  玩家在魔兽世界中冒险、完成任务、新的历险、探索未知的世界、征服怪物等。'
+                    },
+
+                }
+            },
+            methods: {
+                // img 点击
+                imgClick: function () {
+                    this.clearAllBorder();
+                    this.left.img.class.border = true;
+                    this.currentSelectedDom = 'img';
+                },
+                // text 点击
+                textClick: function () {
+                    this.clearAllBorder();
+                    this.left.text.class.border = true;
+                    this.currentSelectedDom = 'text';
+                },
+                // 清除所有 border
+                clearAllBorder: function () {
+                    this.currentSelectedDom = '';
+                    this.left.img.class.border = false;
+                    this.left.text.class.border = false;
                 }
             }
         });
