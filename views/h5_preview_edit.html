@@ -36,7 +36,23 @@
 
     <!--右侧-->
     <section class="right">
-        {{currentSelectedDom}}
+        <section style="margin-bottom: 20px">当前选中DOM：{{currentSelectedDom}}</section>
+
+        <!--更改图片-->
+        <section v-if="currentSelectedDom==='img'">
+            <label for="changeImg">
+                更换图片<input name="changeImg" type="text" v-model="newImgSrc">
+            </label>
+            <button @click="saveImg">保存</button>
+        </section>
+
+        <!--更改文本-->
+        <section v-if="currentSelectedDom==='text'">
+            更换文本
+            <textarea name="changeText" v-model="newText"></textarea>
+            <button @click="saveText">保存</button>
+        </section>
+
     </section>
 </section>
 
@@ -92,7 +108,11 @@
                             rightText: '右侧文字'
                         },
                     ]
-                }
+                },
+                // 新图片地址
+                newImgSrc: '',
+                // 新文本
+                newText: '',
             },
             methods: {
                 // img 点击
@@ -121,6 +141,22 @@
                     this.left.list.forEach(function (item) {
                         item.class.border = false;
                     });
+                },
+                // 保存图片
+                saveImg: function () {
+                    if (!this.newImgSrc) {
+                        alert('请输入图片地址');
+                        return;
+                    }
+                    this.left.img.src = this.newImgSrc;
+                },
+                // 保存文本
+                saveText: function () {
+                    if (!this.newText) {
+                        alert('请输入文本');
+                        return;
+                    }
+                    this.left.text.text = this.newText;
                 }
             }
         });
