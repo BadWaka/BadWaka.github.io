@@ -1,5 +1,9 @@
 // 身份证号码
-let identityCard = '410728198905041577';
+let identityCardArr = [
+    '410728198905041577',
+    '410728198905041576',
+    '410728198905041575',
+]
 // 权重数组
 const weightArray = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
 // z -> m 映射表
@@ -22,9 +26,19 @@ function calculate(identityCard) {
     z = z % 11;
     // z -> m 映射
     m = mapZM[z];
-    return m === lastStr;
+    return {
+        isTure: m === lastStr,
+        identityCard
+    }
 }
 
-let result = calculate(identityCard);
-
-console.log('最后结果: ', result);
+// 错误列表
+let errorList = [];
+identityCardArr.forEach(function (item) {
+    let result = calculate(item);
+    console.log('result', result);
+    if (!result.isTure) {
+        errorList.push(result.identityCard);
+    }
+});
+console.log('最后结果: ', errorList);
