@@ -1,5 +1,19 @@
-html, body {
+html, body, ul, ol {
   margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+.border {
+  box-sizing: border-box;
+  box-shadow: 0 0 0 2px red;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .app {
@@ -9,15 +23,37 @@ html, body {
 
   // 预览
   .preview {
+    padding: 20px;
     width: 300px;
     height: 600px;
+    box-sizing: border-box;
     border: 1px solid #000;
     overflow: auto;
+
+    // 图片
+    .img {
+      padding-bottom: 56.5%;
+      background: no-repeat center;
+      background-size: cover;
+    }
+
+    .text{
+      word-break: break-all;
+    }
+
+    .list {
+
+      .item {
+        cursor: pointer;
+      }
+    }
   }
 
   // 右侧
   .right {
     margin-left: 50px;
+    padding: 20px;
+    box-sizing: border-box;
     width: 300px;
     height: 600px;
     border: 1px solid #000;
