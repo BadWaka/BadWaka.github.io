@@ -30,6 +30,19 @@
         }
         return false;
     }
+
+    function isOnlyNumber2(string) {
+        // 正则1 过滤包含汉字的字符串
+        var regExp1 = /[\u4e00-\u9fa5]+/g;
+        var result1 = regExp1.test(string);
+        if (!result1) {
+            // 正则2 过滤不包含数字的字符串
+            var regExp2 = /\d+/g;
+            return regExp2.test(string);
+        }
+        return false;
+    }
+
     var arr = [
         // 符合条件
         'dsajhqwehkqj.,/,.,231j.,!@)(**&^%$$#@:"{}<>?dajkeqw.213,.12',
@@ -41,7 +54,7 @@
 
     // 调用
     arr.forEach(function (item, index) {
-        console.log(index, isOnlyNumber(item));
+        console.log(index, isOnlyNumber2(item));
     });
 
 </script>
