@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>website</title>
+    <!--引入样式-->
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet/less" href="./website.less"/>
+    <!--引入 less 解析-->
+    <script src="../../library/less/less.min.js"></script>
+</head>
+
+<body>
+
+<section id="app">
+
+    <header class="header">
+        <h1>{{title}}</h1>
+        <h2>{{subTitle}}</h2>
+    </header>
+
+    <menu class="menu">
+        <ul class="menu-ul">
+            <li class="menu-li" v-for="(item, index) in menu">
+                {{item.text}}
+            </li>
+        </ul>
+    </menu>
+
+    <section class="banner">
+
+    </section>
+
+    <section class="video">
+
+    </section>
+
+    <section class="news">
+
+    </section>
+
+    <footer>
+
+    </footer>
+</section>
+
+</body>
+
+<script src="../../library/vue/vue.js"></script>
+<script>
+    window.onload = function () {
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                title: 'waka',
+                subTitle: 'waka2',
+                menu: [
+                    {
+                        text: 'MAIN',
+                        url: 'http://www.baidu.com'
+                    },
+                    {
+                        text: 'HISTORY',
+                        url: 'http://www.baidu.com'
+                    },
+                    {
+                        text: 'MENU',
+                        url: 'http://www.baidu.com'
+                    },
+                    {
+                        text: 'NEWS',
+                        url: 'http://www.baidu.com'
+                    },
+                    {
+                        text: 'LOCATION',
+                        url: 'http://www.baidu.com'
+                    },
+                    {
+                        text: 'CONTACT',
+                        url: 'http://www.baidu.com'
+                    },
+                ]
+            }
+        });
+    };
+</script>
+
+</html>
