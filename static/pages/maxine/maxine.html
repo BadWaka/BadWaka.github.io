@@ -13,34 +13,80 @@
 </head>
 
 <body>
-    <section id="page">
-        <!-- header -->
-        <header class="header">
-            <div class="img-left" :style="{'background-image':'url('+headerImg+')'}"></div>
-            <div class="right">
-                <h1 class="title">Maxine</h1>
-                <h2 class="sub-title">24w</h2>
-            </div>
-        </header>
-        <!-- tabs -->
-        <ul class="tabs">
-            <li v-for="(item, index) in tabs" key="index" class="tab-item">
-                {{item.text}}
-            </li>
-        </ul>
-        <!-- Slider main container -->
+
+<section id="page">
+
+    <!-- header -->
+    <header class="header">
+        <div class="img-left" :style="{'background-image':'url('+headerImg+')'}"></div>
+        <div class="right">
+            <h1 class="title">Maxine</h1>
+            <h2 class="sub-title">24w</h2>
+        </div>
+    </header>
+
+    <!-- tabs -->
+    <ul class="tabs">
+        <li v-for="(item, index) in tabs" :key="item.id"
+            :class="tabSelected === item.id ? 'tab-item-selected':'tab-item'" @click="onTabClick(item)">
+            {{item.text}}
+        </li>
+    </ul>
+
+    <!-- index -->
+    <section v-if="tabSelected === 0" class="index">
+        <!-- 轮播 -->
         <div class="swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                 <!-- Slides -->
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
+                <div v-for="(item, index) in index.banners" :key="index" class="swiper-slide"
+                     :style="{'background-image':'url('+item.imgSrc+')'}"></div>
             </div>
-            <!-- If we need pagination -->
+            <!-- 轮播点 -->
             <div class="swiper-pagination"></div>
         </div>
+        <!-- 卡片们 -->
+        <template v-for="(item, index) in index.cards">
+            <!-- 视频卡 -->
+            <section v-if="item.type==='video'" class="video-card">
+                <h2 class="title">{{item.title}}</h2>
+                <h3 class="sub-title">{{item.subTitle}}</h3>
+                <!--<video class="video" :src="item.videoSrc"></video>-->
+                <div class="img" :style="{'background-image':'url('+item.imgSrc+')'}"></div>
+                <div class="bottom">
+                    <span>{{item.bottomInfo}}</span>
+                </div>
+            </section>
+            <!-- 新闻卡 -->
+            <section v-if="item.type==='news'" class="news-card">
+                <h2 class="title">{{item.title}}</h2>
+                <ul class="imgs">
+                    <li class="img-item" v-for="(item2, index2) in item.imgs" :key="index2" class="img-item">
+                        <div class="img" :style="{'background-image':'url('+item2.imgSrc+')'}"></div>
+                        <ul class="texts">
+                            <li v-for="(item3, index3) in item2.texts" :key="index3" class="text-item">{{item3}}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </template>
     </section>
+
+    <!-- 历史 -->
+    <section v-if="tabSelected === 1" class="history">
+        <section class="history-card">
+
+        </section>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="title">{{footer.title}}</div>
+        <div v-for="(item, index) in footer.infos" :key="index" class="info-item">{{item}}</div>
+    </footer>
+
+</section>
 </body>
 
 <!-- vue -->

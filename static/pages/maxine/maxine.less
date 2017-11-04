@@ -1,71 +1,183 @@
+@primaryColor: #6F0034;
+
 html, body {
-    height: 100%;
+  height: 100%;
 }
 
+// 头部
 .header {
-    display: flex;
-    align-items: center;
-    height: 100px;
+  display: flex;
+  align-items: center;
+  height: 100px;
 
-    .img-left {
-        margin-left: 100px;
-        width: 50px;
-        height: 50px;
-        background: center no-repeat;
-        background-size: cover;
-        border-radius: 50%;
+  .img-left {
+    margin-left: 100px;
+    width: 60px;
+    height: 60px;
+    background: center no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+  }
+
+  .right {
+    margin-left: 20px;
+    text-align: center;
+
+    .title {
+      font-size: 28px;
     }
 
-    .right {
-        margin-left: 10px;
-        text-align: center;
-
-        .title {
-            font-size: 24px;
-        }
-
-        .sub-title {
-            font-size: 14px;
-        }
+    .sub-title {
+      margin-top: 5px;
+      font-size: 18px;
+      color: #555;
     }
+  }
 }
 
+// tabs
 .tabs {
-    display: flex;
-    justify-content: center;
-    border-top: 1px solid #555;
-    border-bottom: 1px solid #555;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid @primaryColor;
+  border-bottom: 1px solid @primaryColor;
+  box-sizing: border-box;
+
+  .tab-item, .tab-item-selected {
+    height: 40px;
+    line-height: 40px;
+    width: 140px;
+    font-size: 18px;
+    color: @primaryColor;
+    text-align: center;
+    cursor: pointer;
+    transition: .5s;
+    border-left: 1px solid @primaryColor;
     box-sizing: border-box;
 
-    .tab-item {
-        height: 40px;
-        line-height: 40px;
-        width: 100px;
-        color: #555;
-        text-align: center;
-        cursor: pointer;
-        transition: .5s;
-        border-left: 1px solid #555;
-        box-sizing: border-box;
-
-        &:hover {
-            background: #555;
-            color: #fff;
-        }
-
-        &:last-child {
-            border-right: 1px solid #555;
-        }
+    &:hover {
+      background: @primaryColor;
+      color: #fff;
     }
+
+    &:last-child {
+      border-right: 1px solid @primaryColor;
+    }
+  }
+
+  .tab-item-selected {
+    background: @primaryColor;
+    color: #fff;
+  }
 }
 
-.swiper-container {
+// 主页
+.index {
+
+  // 轮播
+  .swiper-container {
     height: 500px;
 
     .swiper-slide {
-        width: 100%;
-        height: 100%;
+      width: 100%;
+      height: 100%;
+      background: center no-repeat;
+      background-size: cover;
+    }
+  }
+}
+
+// 历史页
+.history {
+
+}
+
+// footer
+.footer {
+  padding: 100px 200px;
+  background: @primaryColor;
+  color: #fff;
+  text-align: center;
+
+  .title {
+    margin-bottom: 50px;
+    font-size: 30px;
+  }
+
+  .info-item {
+    margin-top: 5px;
+    font-size: 13px;
+  }
+}
+
+// 卡片
+.video-card, .news-card, .history-card {
+  margin: 0 auto;
+  padding: 60px 200px;
+  background: #fff;
+  color: @primaryColor;
+  text-align: center;
+
+  .title {
+    font-size: 30px;
+  }
+}
+
+// 视频卡
+.video-card {
+
+  .sub-title {
+    margin-top: 15px;
+    font-size: 20px;
+  }
+
+  .img {
+    margin-top: 40px;
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%;
+    background: center no-repeat;
+    background-size: cover;
+  }
+
+  .bottom {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: right;
+  }
+}
+
+// 新闻卡
+.news-card {
+  background: #F0F0EE;
+
+  .imgs {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+
+    .img-item {
+      margin: 0 10px;
+
+      .img {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
         background: center no-repeat;
         background-size: cover;
+      }
+
+      .texts {
+
+        .text-item {
+          margin-top: 10px;
+        }
+      }
     }
+  }
+}
+
+// 历史卡
+.history-card {
+
 }
