@@ -10,13 +10,25 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="img-left"></div>
-        <div class="right">
-            <h1 class="title">Maxine</h1>
-            <h2 class="sub-title">24w</h2>
-        </div>
-    </header>
+    <section id="page">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="img-left" :style="{'background-image':'url('+headerImg+')'}"></div>
+            <div class="right">
+                <h1 class="title">Maxine</h1>
+                <h2 class="sub-title">24w</h2>
+            </div>
+        </header>
+        <!-- tabs -->
+        <ul class="tabs">
+            <li v-for="(item, index) in tabs" key="index" class="tab-item">
+                {{item.text}}
+            </li>
+        </ul>
+    </section>
 </body>
+
+<script src="/static/library/vue/vue.js"></script>
+<script src="./maxine.js"></script>
 
 </html>
