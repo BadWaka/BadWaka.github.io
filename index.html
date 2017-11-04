@@ -1,165 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <title>h5预览编辑页</title>
-    <!--引入样式-->
-    <link rel="stylesheet/less" href="/stylesheets/h5_preview_edit.less"/>
-    <!--引入 less 解析-->
-    <script src="/library/less/less.min.js"></script>
+    <title>maxine</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet/less" href="./maxine.less">
+    <!-- swiper -->
+    <link rel="stylesheet" href="/static/library/swiper/swiper.min.css">
+    <!-- less -->
+    <script src="/static/library/less/less.min.js"></script>
 </head>
 
 <body>
 
-<section id="app" class="app">
+<section id="page">
 
-    <!--预览-->
-    <section class="preview">
-        <!--图片-->
-        <div :class="left.img.class" :style="{backgroundImage: 'url('+left.img.src+')'}" @click="imgClick">
+    <!-- header -->
+    <header class="header">
+        <div class="img-left" :style="{'background-image':'url('+header.imgSrc+')'}"></div>
+        <div class="right">
+            <h1 class="title">{{header.title}}</h1>
+            <h2 class="sub-title">{{header.subTitle}}</h2>
         </div>
-        <!--文字-->
-        <div :class="left.text.class" @click="textClick">
-            {{left.text.text}}
+    </header>
+
+    <!-- tabs -->
+    <ul class="tabs">
+        <li v-for="(item, index) in tabs" :key="item.id"
+            :class="tabSelected === item.id ? 'tab-item-selected':'tab-item'" @click="onTabClick(item)">
+            {{item.text}}
+        </li>
+    </ul>
+
+    <!-- index -->
+    <section v-show="tabSelected === 0" class="index">
+        <!-- 轮播 -->
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div v-for="(item, index) in index.banners" :key="index" class="swiper-slide"
+                     :style="{'background-image':'url('+item.imgSrc+')'}"></div>
+            </div>
+            <!-- 轮播点 -->
+            <div class="swiper-pagination"></div>
         </div>
-        <!--列表-->
-        <ul class="list">
-            <!--项-->
-            <li v-for="(item,index) in left.list" :class="item.class" @click="listItemClick(item,index)">
-                <img width="30" :src="item.iconSrc" alt="">
-                <span>{{item.text}}</span>
-                <span>{{item.rightText}}</span>
+        <!-- 卡片们 -->
+        <template v-for="(item, index) in index.cards">
+            <!-- 视频卡 -->
+            <section v-if="item.type==='video'" class="video-card">
+                <h2 class="title">{{item.title}}</h2>
+                <h3 class="sub-title">{{item.subTitle}}</h3>
+                <!--<video class="video" :src="item.videoSrc"></video>-->
+                <div class="img" :style="{'background-image':'url('+item.imgSrc+')'}"></div>
+                <div class="bottom">
+                    <span>{{item.bottomInfo}}</span>
+                </div>
+            </section>
+            <!-- 新闻卡 -->
+            <section v-if="item.type==='news'" class="news-card">
+                <h2 class="title">{{item.title}}</h2>
+                <ul class="imgs">
+                    <li class="img-item" v-for="(item2, index2) in item.imgs" :key="index2" class="img-item">
+                        <div class="img" :style="{'background-image':'url('+item2.imgSrc+')'}"></div>
+                        <ul class="texts">
+                            <li v-for="(item3, index3) in item2.texts" :key="index3" class="text-item">{{item3}}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </template>
+    </section>
+
+    <!-- 历史 -->
+    <section v-show="tabSelected === 1" class="history">
+        <!-- 卡片们 -->
+        <template v-for="(item, index) in history.cards">
+            <section v-if="item.type === 'img-content'" class="img-content-card">
+                <div class="wrapper">
+                    <div class="img-left" :style="{'background-image':'url('+item.imgSrc+')'}"></div>
+                    <div class="right">
+                        <h2 class="title">{{item.title}}</h2>
+                        <p class="content">{{item.content}}</p>
+                    </div>
+                </div>
+            </section>
+        </template>
+    </section>
+
+    <!-- 菜单 -->
+    <section v-show="tabSelected === 2" class="menu">
+        <div class="big-img" :style="{'background-image':'url('+menu.bigImgSrc+')'}">
+            <div class="area">
+                <div class="title">{{menu.title}}</div>
+                <div class="sub-title">{{menu.subTitle}}</div>
+            </div>
+        </div>
+        <ul class="foods">
+            <li v-for="(item, index) in menu.foods" class="food-item">
+                <div class="divider"></div>
+                <h2 class="title">{{item.title}}</h2>
+                <img :src="item.imgSrc" alt="">
             </li>
         </ul>
     </section>
 
-    <!--右侧-->
-    <section class="right">
-        <section style="margin-bottom: 20px">当前选中DOM：{{currentSelectedDom}}</section>
+    <!-- footer -->
+    <footer class="footer">
+        <div class="title">{{footer.title}}</div>
+        <div v-for="(item, index) in footer.infos" :key="index" class="info-item">{{item}}</div>
+    </footer>
 
-        <!--更改图片-->
-        <section v-if="currentSelectedDom==='img'">
-            <label for="changeImg">
-                更换图片<input name="changeImg" type="text" v-model="newImgSrc">
-            </label>
-            <button @click="saveImg">保存</button>
-        </section>
-
-        <!--更改文本-->
-        <section v-if="currentSelectedDom==='text'">
-            更换文本
-            <textarea name="changeText" v-model="newText"></textarea>
-            <button @click="saveText">保存</button>
-        </section>
-
-    </section>
 </section>
-
 </body>
 
-<script src="/library/vue/vue.js"></script>
-<script>
-    window.onload = function () {
-        var app = new Vue({
-            el: '#app',
-            data: {
-                // 当前选中 dom
-                currentSelectedDom: '',
-                // 左侧 preview
-                left: {
-                    // 图片
-                    img: {
-                        // 类
-                        class: {
-                            pointer: true,
-                            img: true,
-                            border: false,
-                        },
-                        src: 'https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=28cc2f9032c79f3d8fe1e336829aaa2c/6a63f6246b600c3366b5b4a7134c510fd8f9a195.jpg'
-                    },
-                    // 文本
-                    text: {
-                        class: {
-                            pointer: true,
-                            text: true,
-                            border: false,
-                        },
-                        text: '《魔兽世界》（World of Warcraft）是由著名游戏公司暴雪娱乐所制作的第一款网络游戏，属于大型多人在线角色扮演游戏。游戏以该公司出品的即时战略游戏《魔兽争霸》的剧情为历史背景，依托魔兽争霸的历史事件和英雄人物，魔兽世界有着完整的历史背景时间线。[1]  玩家在魔兽世界中冒险、完成任务、新的历险、探索未知的世界、征服怪物等。'
-                    },
-                    // 列表
-                    list: [
-                        {
-                            class: {
-                                item: true,
-                                border: false,
-                            },
-                            iconSrc: 'http://www.easyicon.net/api/resizeApi.php?id=1190108&size=128',
-                            text: '文字文字文字',
-                            rightText: '右侧文字'
-                        },
-                        {
-                            class: {
-                                item: true,
-                                border: false,
-                            },
-                            iconSrc: 'http://www.easyicon.net/api/resizeApi.php?id=1190113&size=128',
-                            text: '文字文字文字',
-                            rightText: '右侧文字'
-                        },
-                    ]
-                },
-                // 新图片地址
-                newImgSrc: '',
-                // 新文本
-                newText: '',
-            },
-            methods: {
-                // img 点击
-                imgClick: function () {
-                    this.clearAllBorder();
-                    this.left.img.class.border = true;
-                    this.currentSelectedDom = 'img';
-                },
-                // text 点击
-                textClick: function () {
-                    this.clearAllBorder();
-                    this.left.text.class.border = true;
-                    this.currentSelectedDom = 'text';
-                },
-                // 列表项点击
-                listItemClick: function (item, index) {
-                    this.clearAllBorder();
-                    this.left.list[index].class.border = true;
-                    this.currentSelectedDom = 'listItem' + index;
-                },
-                // 清除所有 border
-                clearAllBorder: function () {
-                    this.currentSelectedDom = '';
-                    this.left.img.class.border = false;
-                    this.left.text.class.border = false;
-                    this.left.list.forEach(function (item) {
-                        item.class.border = false;
-                    });
-                },
-                // 保存图片
-                saveImg: function () {
-                    if (!this.newImgSrc) {
-                        alert('请输入图片地址');
-                        return;
-                    }
-                    this.left.img.src = this.newImgSrc;
-                },
-                // 保存文本
-                saveText: function () {
-                    if (!this.newText) {
-                        alert('请输入文本');
-                        return;
-                    }
-                    this.left.text.text = this.newText;
-                }
-            }
-        });
-    };
-</script>
+<!-- vue -->
+<script src="/static/library/vue/vue.js"></script>
+<!-- <script src="/static/library/vue/vue.min.js"></script> -->
+<!-- swiper -->
+<script src="/static/library/swiper/swiper.min.js"></script>
+<script src="./maxine.js"></script>
+
 </html>
