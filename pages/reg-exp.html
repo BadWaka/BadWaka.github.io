@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var s = 'djkashkqwe1123./,./,你好';
+    // 匹配是否是汉字
+    var reg = /[\u4e00-\u9fa5]/g;
+    var r = reg.test(s);
+    console.log('r', r);
+</script>
+</html>
