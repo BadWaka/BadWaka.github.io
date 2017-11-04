@@ -18,10 +18,10 @@
 
     <!-- header -->
     <header class="header">
-        <div class="img-left" :style="{'background-image':'url('+headerImg+')'}"></div>
+        <div class="img-left" :style="{'background-image':'url('+header.imgSrc+')'}"></div>
         <div class="right">
-            <h1 class="title">Maxine</h1>
-            <h2 class="sub-title">24w</h2>
+            <h1 class="title">{{header.title}}</h1>
+            <h2 class="sub-title">{{header.subTitle}}</h2>
         </div>
     </header>
 
@@ -34,7 +34,7 @@
     </ul>
 
     <!-- index -->
-    <section v-if="tabSelected === 0" class="index">
+    <section v-show="tabSelected === 0" class="index">
         <!-- 轮播 -->
         <div class="swiper-container">
             <!-- Additional required wrapper -->
@@ -74,10 +74,36 @@
     </section>
 
     <!-- 历史 -->
-    <section v-if="tabSelected === 1" class="history">
-        <section class="history-card">
+    <section v-show="tabSelected === 1" class="history">
+        <!-- 卡片们 -->
+        <template v-for="(item, index) in history.cards">
+            <section v-if="item.type === 'img-content'" class="img-content-card">
+                <div class="wrapper">
+                    <div class="img-left" :style="{'background-image':'url('+item.imgSrc+')'}"></div>
+                    <div class="right">
+                        <h2 class="title">{{item.title}}</h2>
+                        <p class="content">{{item.content}}</p>
+                    </div>
+                </div>
+            </section>
+        </template>
+    </section>
 
-        </section>
+    <!-- 菜单 -->
+    <section v-show="tabSelected === 2" class="menu">
+        <div class="big-img" :style="{'background-image':'url('+menu.bigImgSrc+')'}">
+            <div class="area">
+                <div class="title">{{menu.title}}</div>
+                <div class="sub-title">{{menu.subTitle}}</div>
+            </div>
+        </div>
+        <ul class="foods">
+            <li v-for="(item, index) in menu.foods" class="food-item">
+                <div class="divider"></div>
+                <h2 class="title">{{item.title}}</h2>
+                <img :src="item.imgSrc" alt="">
+            </li>
+        </ul>
     </section>
 
     <!-- footer -->
