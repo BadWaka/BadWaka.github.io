@@ -8,10 +8,54 @@
 
 </body>
 <script>
-    var s = 'djkashkqwe1123./,./,你好';
-    // 匹配是否是汉字
-    var reg = /[\u4e00-\u9fa5]/g;
-    var r = reg.test(s);
-    console.log('r', r);
+    //    var s1 = 'dsajhqwehkqj.,/,.,231j.,dajkeqw.213,.12';
+    //    var s2 = 'dsajhqwehkqj.,/,.,231j.,dajkeqw.213,.12哈哈哈哈';
+    //    var s3 = 'dsajhqwehkqj.,/,.,j.,dajkeqw.';
+    //    var regExp = /^(?!.*[\u4e00-\u9fa5]+)/g;
+    //    var r1 = regExp.test(s1);
+    //    var r2 = regExp.test(s2);
+    //    var r3 = regExp.test(s3);
+    //    console.log('r1', r1);
+    //    console.log('r2', r2);
+    //    console.log('r3', r3);
+
+    function isOnlyNumber(string) {
+        // 正则1 过滤包含汉字的字符串
+        var regExp1 = /^(?!.*[\u4e00-\u9fa5]+)/g;
+        var result1 = regExp1.test(string);
+        if (result1) {
+            // 正则2 过滤不包含数字的字符串
+            var regExp2 = /\d+/g;
+            return regExp2.test(string);
+        }
+        return false;
+    }
+
+    function isOnlyNumber2(string) {
+        // 正则1 过滤包含汉字的字符串
+        var regExp1 = /[\u4e00-\u9fa5]+/g;
+        var result1 = regExp1.test(string);
+        if (!result1) {
+            // 正则2 过滤不包含数字的字符串
+            var regExp2 = /\d+/g;
+            return regExp2.test(string);
+        }
+        return false;
+    }
+
+    var arr = [
+        // 符合条件
+        'dsajhqwehkqj.,/,.,231j.,!@)(**&^%$$#@:"{}<>?dajkeqw.213,.12',
+        // 不符合条件 包含汉字
+        'dsajhqwehkqj.,/,.,231j.,dajk@)(**&^%$$#@:"{}<>?deqw.213,.12哈哈哈哈',
+        // 不符合条件 不包含数字
+        'dsajhqwehkqj.,/,.,j.,dajkeqw.___--!@#@#$&$#^*&^*&'
+    ];
+
+    // 调用
+    arr.forEach(function (item, index) {
+        console.log(index, isOnlyNumber2(item));
+    });
+
 </script>
 </html>
