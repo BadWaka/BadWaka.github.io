@@ -6,12 +6,15 @@
     <title>maxine</title>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet/less" href="./maxine.less">
+    <!-- swiper -->
+    <link rel="stylesheet" href="/static/library/swiper/swiper.min.css">
+    <!-- less -->
     <script src="/static/library/less/less.min.js"></script>
 </head>
 
 <body>
     <section id="page">
-        <!-- 头部 -->
+        <!-- header -->
         <header class="header">
             <div class="img-left" :style="{'background-image':'url('+headerImg+')'}"></div>
             <div class="right">
@@ -25,10 +28,26 @@
                 {{item.text}}
             </li>
         </ul>
+        <!-- Slider main container -->
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">Slide 1</div>
+                <div class="swiper-slide">Slide 2</div>
+                <div class="swiper-slide">Slide 3</div>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
     </section>
 </body>
 
+<!-- vue -->
 <script src="/static/library/vue/vue.js"></script>
+<!-- <script src="/static/library/vue/vue.min.js"></script> -->
+<!-- swiper -->
+<script src="/static/library/swiper/swiper.min.js"></script>
 <script src="./maxine.js"></script>
 
 </html>
