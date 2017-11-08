@@ -29,3 +29,19 @@ axios({
     });
 });
 
+axios({
+    method: 'get',
+    url: 'http://www.baidu.com',
+    headers: {
+        'User-Agent': uaMobile
+    }
+}).then((res) => {
+    fs.writeFile('baidu_mobile.html', res.data, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.info('ok.');
+        }
+    });
+});
+
