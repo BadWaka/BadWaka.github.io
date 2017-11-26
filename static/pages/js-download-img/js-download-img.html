@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js-download-img</title>
+</head>
+<body>
+<img src="http://img4.imgtn.bdimg.com/it/u=845759509,3300607839&fm=27&gp=0.jpg" alt="">
+<img src="http://img4.imgtn.bdimg.com/it/u=845759509,3300607839&fm=27&gp=0.jpg" alt="">
+<img src="http://img4.imgtn.bdimg.com/it/u=845759509,3300607839&fm=27&gp=0.jpg" alt="">
+<img src="http://img4.imgtn.bdimg.com/it/u=845759509,3300607839&fm=27&gp=0.jpg" alt="">
+<img src="http://img4.imgtn.bdimg.com/it/u=845759509,3300607839&fm=27&gp=0.jpg" alt="">
+</body>
+<script>
+    /**
+     * js 下载图片
+     * @param src
+     */
+    function download(src) {
+        // 新建一个 a 标签
+        var $a = document.createElement('a');
+        // 设置链接为图片链接
+        $a.setAttribute('href', src);
+        // 设置参数为下载
+        $a.setAttribute('download', '');
+
+        // 新建一个事件
+        var evObj = document.createEvent('MouseEvents');
+        evObj.initEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, true, false, 0, null);
+        // 模拟 a 标签被点击
+        $a.dispatchEvent(evObj);
+    }
+
+    /**
+     * 得到当前网页所有的图片 src 数组
+     * @return imgsArr
+     */
+    function getAllImgSrc() {
+        var imgs = document.getElementsByTagName('img');
+        var imgsArr = [];
+        [].forEach.call(imgs, function (item, index) {
+            console.log(item.src);
+            imgsArr.push(item.src);
+        });
+        return imgsArr;
+    }
+
+    /**
+     * 调用
+     */
+    function doIt(imgsArr) {
+        imgsArr.forEach(function (item, index) {
+            download(item);
+        });
+    }
+
+    var a = getAllImgSrc();
+
+    doIt(a);
+
+</script>
+</html>
