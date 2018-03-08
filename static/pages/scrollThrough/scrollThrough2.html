@@ -48,8 +48,9 @@
     <div id="vm">
         <!-- 原 dom -->
         <section>
+            <div v-for="(item, index) in 10" :key="index">{{item}}</div>
             <button @click="openPopup">打开浮层</button>
-            <div v-for="(item, index) in 100" :key="index">{{item}}</div>
+            <div v-for="(item, index) in 100" :key="index + 10">{{item + 10}}</div>
         </section>
         <!-- 弹出层 -->
         <div id="popup" v-if="isShowPopup" class="popup" @click="handlePopupClick">
@@ -64,6 +65,7 @@
 
 <script src="./vue.js"></script>
 <script>
+    const fixClass = 'popup-open';
     const vm = new Vue({
         el: '#vm',
         data: {
@@ -79,21 +81,22 @@
             },
             openPopup() {
                 this.isShowPopup = true;
-                this.setBodyScrollState(false);
+
+                // 在弹出层显示之前，记录当前的滚动位置
+                this.scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+                console.log('openPopup this.scrollTop', this.scrollTop);
+                // 使body脱离文档流
+                document.body.classList.add(fixClass);
+                // 把脱离文档流的body拉上去！否则页面会回到顶部！
+                document.body.style.top = -this.scrollTop + 'px';
             },
             close() {
                 this.isShowPopup = false;
-                this.setBodyScrollState(true);
-            },
-            // 设置 body 滚动状态
-            setBodyScrollState(isScroll) {
-                if (isScroll) {
-                    document.body.style.overflow = 'auto';
-                    document.body.style.height = 'auto';
-                } else {
-                    document.body.style.overflow = 'hidden';
-                    document.body.style.height = '100%';
-                }
+
+                // body又回到了文档流中
+                document.body.classList.remove(fixClass);
+                // 滚回到老地方
+                document.body.scrollTop = document.documentElement.scrollTop = this.scrollTop;
             }
         }
     });
