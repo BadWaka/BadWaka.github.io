@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
 });
 
 // server
-const server = app.listen(3000, function () {
+const server = app.listen(3001, function () {
     const host = server
         .address()
         .address;
