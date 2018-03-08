@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>iscroll-demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {}
+
+    #wrapper {
+        position: relative;
+        overflow: hidden;
+        height: 70px;
+    }
+
+    #scroller {
+        position: absolute;
+    }
+
+    #list {
+        display: flex;
+        height: 100%;
+        width: auto;
+    }
+
+    #list>.item {
+        padding: 20px;
+        border: 1px solid red;
+    }
+</style>
+
+<body onload="loaded">
+    <div id="app">
+        <div id="wrapper">
+            <div id="scroller">
+                <div id="list">
+                    <div class="item" v-for="(item, index) in 100" :key="index">{{item}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="./vue.js"></script>
+<script src="./iscroll.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            iscroll: null
+        },
+        mounted() {
+            const iScrollOpts = {
+
+            };
+            this.iscroll = new IScroll('#wrapper', iScrollOpts);
+        }
+    });
+</script>
+
+</html>
