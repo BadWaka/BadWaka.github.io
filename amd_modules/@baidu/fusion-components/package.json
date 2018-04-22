@@ -1,0 +1,57 @@
+{
+  "name": "@baidu/fusion-components",
+  "version": "0.1.4",
+  "description": "awesome fusion components lib",
+  "main": "index.js",
+  "browser": "output/fusion",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "predev": "fis3 server start --root=./",
+    "dev": "fis3 release --dest=./build --root=./src/ --file=./fisconfig.js -wlc",
+    "build": "make",
+    "test": "karma --port 9876 start --reporters mocha",
+    "test:reports": "karma --port 9876 start --reporters mocha,html,coverage",
+    "test:watch": "karma --port 9876 start --auto-watch --no-single-run",
+    "test:listen": "karma --port 9876 start --browsers --no-single-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://g@gitlab.baidu.com:8022/fusion/fusion-components.git"
+  },
+  "keywords": [
+    "fusion",
+    "web",
+    "components"
+  ],
+  "author": {
+    "name": "JoeRay61"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "karma": "^1.3.0",
+    "karma-chai": "^0.1.0",
+    "karma-chai-as-promised": "^0.1.2",
+    "karma-chai-sinon": "^0.1.5",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-coverage": "^1.1.1",
+    "karma-html-reporter": "^0.2.7",
+    "karma-mocha": "^1.1.1",
+    "karma-mocha-reporter": "^2.0.4",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.5",
+    "sinon-chai": "^2.8.0",
+    "fis3": "^3.4.34",
+    "fis3-hook-amd": "^0.2.0",
+    "fis3-hook-commonjs": "^0.1.26",
+    "fis3-parser-less-2.x": "^0.1.4"
+  },
+  "dist": {
+    "integrity": "sha512-ZOAB7ddxQ6E9v+sp4DfdUlPB89Ki/XK3W+FJBHU2dwvKsbxxgYpOUdsrtnRFel7ZYEECxAnhxf1gMmvBECLgtQ==",
+    "shasum": "48552da0ac53d007ce31e2fd45ed3480a292037b",
+    "tarball": "http://apmjs.baidu.com/@baidu%2ffusion-components/-/fusion-components-0.1.4.tgz"
+  }
+}

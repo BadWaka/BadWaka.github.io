@@ -1,0 +1,18 @@
+<div id="b-dialog">
+    <div class="b-dialog-mask"></div>
+    <div class="b-dialog-layout">
+        <div class="b-dialog-content">
+            <div class="b-dialog-title">${title}</div>
+            <% if: ${text} %>
+            <div class="b-dialog-text">${text|raw}</div>
+            <% /if %>
+        </div>
+        <div class="b-dialog-buttons <% if: ${isBtnVertical} %>b-dialog-vertical-buttons<% else %>c-flexbox<% /if %>">
+        <% for: ${btns} as ${btn} %>
+            <% if: ${btn.text} %>
+            <span class="b-dialog-button c-line-clamp1">${btn.text}</span>
+            <% /if %>
+        <% /for %>
+        </div>
+    </div>
+</div>
