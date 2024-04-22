@@ -1,7 +1,6 @@
 
 <template>
     <div>
-        列表
         <div
             v-for="item in list"
         >
