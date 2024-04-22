@@ -1,5 +1,0 @@
-<div class="b-lightbox-container">
-    <div class="b-lightbox-item prev"></div>
-    <div class="b-lightbox-item current"></div>
-    <div class="b-lightbox-item next"></div>
-</div>

@@ -1,10 +1,9 @@
-# BadWaka.github.io
+# Vue 3 + TypeScript + Vite
 
-## 主页替换脚本
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-/static
+## Recommended Setup
 
-/static/pages/hundreds-of-cars/dist/static
+- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
 
-![](http://upload-images.jianshu.io/upload_images/1828354-bde6754c0abf91e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![](http://upload-images.jianshu.io/upload_images/1828354-09cf370f7f1546ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- Use [vue-tsc](https://github.com/vuejs/language-tools/tree/master/packages/tsc) for performing the same type checking from the command line, or for generating d.ts files for SFCs.
