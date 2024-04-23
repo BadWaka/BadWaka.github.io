@@ -47,14 +47,19 @@ async function findMarkdownFiles(dir) {
  */
 async function readMarkdownFile(filePath) {
     try {
+        const dirname = path.dirname(filePath);
+        const basename = path.basename(filePath);
+        const lastDir = path.basename(dirname);
+        console.log('basename', basename);
         const content = await fs.readFile(filePath, 'utf8');
         const match = content.match(/^# (.*)/m); // 正则表达式匹配 Markdown 标题
-        if (match) {
-            return { path: filePath, title: match[1], content: content };
-        }
-        else {
-            return { path: filePath, title: 'No title found', content: content };
-        }
+        return {
+            path: filePath,
+            title: match ? match[1] : '',
+            content: content,
+            type: lastDir,
+            fileName: basename
+        };
     }
     catch (err) {
         console.error('Error reading file:', filePath, err);
@@ -85,12 +90,11 @@ async function writeJsonToFile(data, filePath) {
 async function main() {
     const directoryPath = path.join(__dirname, '../../src/articles');
     const markdownFiles = await findMarkdownFiles(directoryPath);
-    console.log(markdownFiles);
+    console.log('markdown 文件列表', markdownFiles);
 
     const articles = [];
     for (const file of markdownFiles) {
         const fileData = await readMarkdownFile(file);
-        console.log(fileData);
         articles.push(fileData);
     }
 
