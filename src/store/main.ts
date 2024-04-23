@@ -2,6 +2,7 @@
 import {
     defineStore
 } from 'pinia';
+import articles from '../../src/articles/articles.json';
 
 export interface MainState {
 }
@@ -21,11 +22,7 @@ export const useMainStore = defineStore('main', {
             }
         ],
         // 文章列表
-        list: [
-            {
-                title: '测试文章'
-            }
-        ]
+        list: articles
     }),
 
     getters: {

@@ -6,6 +6,7 @@
 import { promises as fs } from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { marked } from 'marked';
 
 // 获取当前文件的路径
 const __filename = fileURLToPath(import.meta.url);
@@ -52,11 +53,13 @@ async function readMarkdownFile(filePath) {
         const lastDir = path.basename(dirname);
         console.log('basename', basename);
         const content = await fs.readFile(filePath, 'utf8');
+        const html = marked(content);
         const match = content.match(/^# (.*)/m); // 正则表达式匹配 Markdown 标题
         return {
             path: filePath,
             title: match ? match[1] : '',
-            content: content,
+            content,
+            html,
             type: lastDir,
             fileName: basename
         };
@@ -98,7 +101,7 @@ async function main() {
         articles.push(fileData);
     }
 
-    writeJsonToFile(articles, path.join(__dirname, '../../public/articles.json'));
+    writeJsonToFile(articles, path.join(__dirname, '../../src/articles/articles.json'));
 }
 
 main();

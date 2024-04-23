@@ -6,6 +6,10 @@
         <div>
             {{ data.title }}
         </div>
+        <div
+            v-html="data.html"
+        >
+        </div>
     </div>
 </template>
 
