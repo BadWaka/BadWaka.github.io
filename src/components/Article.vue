@@ -2,6 +2,7 @@
 <template>
     <div
         v-if="data"
+        class="article"
     >
         <div>
             {{ data.title }}
@@ -22,4 +23,8 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
+.article {
+    padding: 20px;
+    background-color: #fff;
+}
 </style>

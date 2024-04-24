@@ -1,6 +1,8 @@
 
 <template>
-    <div>
+    <div
+        class="list"
+    >
         <div
             v-for="item in list"
         >
@@ -30,4 +32,7 @@ import Article from '@/components/Article.vue';
 </script>
 
 <style scoped lang="scss">
+.list {
+    width: 1000px;
+}
 </style>

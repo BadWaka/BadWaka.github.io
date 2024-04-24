@@ -1,6 +1,8 @@
 
 <template>
-    <div>
+    <div
+        class="container"
+    >
         <Tabs/>
         <List/>
     </div>
@@ -14,4 +16,9 @@ import List from '@/pages/list/List.vue';
 </script>
 
 <style scoped lang="scss">
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 </style>
