@@ -4,9 +4,9 @@
         v-if="data"
         class="article"
     >
-        <div>
+        <!-- <div>
             {{ data.title }}
-        </div>
+        </div> -->
         <div
             v-html="data.html"
         >
