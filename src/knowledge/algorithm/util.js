@@ -22,7 +22,7 @@ function TreeNode(val, left, right) {
  * @returns
  */
 export function genBinaryTree(nums) {
-    if (!nums || nums.length === 0 || !nums[0]) {
+    if (nums === null || nums.length === 0 || nums[0] === null) {
         return null;
     }
     let root = new TreeNode(nums[0]);
@@ -31,7 +31,7 @@ export function genBinaryTree(nums) {
     while(i < nums.length) {
         const item = nums[i];
         const node = queue[0];
-        console.log('\nitem', item, 'node', node);
+        // console.log('\nitem', item, 'node', node);
         if (node.left === undefined) {
             if (!item) {
                 node.left = null;
@@ -56,5 +56,6 @@ export function genBinaryTree(nums) {
         }
         i++;
     }
-    log('\nroot', root);
+    // log('\nroot', root);
+    return root;
 }
