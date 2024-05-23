@@ -23,32 +23,35 @@ function quickSort(list) {
 }
 
 // 快速排序，互换
-function quickSortPartition(list, left = 0, right = list.length - 1) {
+export function quickSortPartition(list, left = 0, right = list.length - 1, orderBy = 'asc') {
     if (left < right) {
-        const p = partition(list, left, right);
-        console.log('list.slice(0, p)', list.slice(0, p), 'list.slice(p + 1)', list.slice(p + 1));
-        quickSortPartition(list, left, p - 1);
-        quickSortPartition(list, p + 1, right);
+        const p = partition(list, left, right, orderBy);
+        // console.log('list.slice(0, p)', list.slice(0, p), 'list.slice(p + 1)', list.slice(p + 1));
+        quickSortPartition(list, left, p - 1, orderBy);
+        quickSortPartition(list, p + 1, right, orderBy);
     }
     return list;
 }
 
-function partition(list, left, right) {
-    console.log('\npartition list', list, 'left', left, 'right', right);
+function partition(list, left, right, orderBy) {
+    console.log('\npartition list', list, 'left', left, 'right', right, 'orderBy', orderBy);
     // 取最左边的为支点
     const pivot = list[left];
     let i = left + 1;
     for (let j = left + 1; j <= right; j++) {
-        if (list[j] < pivot) {
+        if (
+            (orderBy === 'asc' && list[j] < pivot)
+            || (orderBy === 'desc' && list[j] > pivot)
+        ) {
             [list[i], list[j]] = [list[j], list[i]];
             i++;
         }
     }
     [list[left], list[i - 1]] = [list[i - 1], list[left]];
-    console.log('after partition list', list);
+    // console.log('after partition list', list);
     return i - 1;
 }
 
-const list = [3, 2, 4, 19, 1, 0, -3, 8];
-const sortList = quickSortPartition(list);
-console.log('\nsortList', sortList);
+// const list = [3, 2, 4, 19, 1, 0, -3, 8];
+// const sortList = quickSortPartition(list, 0, list.length - 1, 'desc');
+// console.log('\nsortList', sortList);
