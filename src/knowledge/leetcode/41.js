@@ -1,8 +1,28 @@
 
+function f(nums) {
+    nums = cyclicSort(nums);
+}
+
+function cyclicSort(nums) {
+    console.log('nums before', nums);
+    for (let i = 0; i < nums.length; i++) {
+        console.log('\ni', i, 'nums[i]', nums[i]);
+        if (nums[i] !== i) {
+            console.log('不在位置上');
+            // 目标位置的缓存
+            const temp = nums[nums[i]];
+            console.log('temp', temp);
+            // 放到目标位置上
+            nums[nums[i]] = nums[i];
+        }
+    }
+    console.log('\nnums', nums);
+}
+
 /**
  * @returns
  */
-function f(nums) {
+function f2(nums) {
     console.log('nums', nums);
     let min = null;
     let max = null;
@@ -76,11 +96,11 @@ function f(nums) {
 }
 
 let params = [1,2,0];
-params = [1,2,4, 8, 20];
+// params = [1,2,4, 8, 20];
 // params = [3,4,-1,1];
 // params = [2,2,3,4,-1,1];
 // params = [1, 2, 4, 7, 8, 9];
 // params = [-23,-9,-1,0];
 // params = [7,8,9,11,12];
 const res = f(params);
-console.log('res', res);
+console.log('\nres', res);
