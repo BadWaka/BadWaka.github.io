@@ -5,6 +5,30 @@ function f(nums) {
         return nums;
     }
     let length = nums.length;
+
+    // 索引左边的乘积
+    let left = [1];
+    for (let i = 1; i < nums.length; i++) {
+        left.push(left[i - 1] * nums[i - 1]);
+    }
+    console.log('left', left);
+
+    let right = 1;
+    for (let i = nums.length - 1; i >=0; i--) {
+        left[i] = left[i] * right;
+        right = right * nums[i];
+    }
+    console.log('left', left);
+
+    return left;
+}
+
+function f4(nums) {
+    console.log('nums', nums);
+    if (!nums || nums.length <= 1) {
+        return nums;
+    }
+    let length = nums.length;
     // 索引左边的乘积
     let left = [1];
     let right = new Array(length);
