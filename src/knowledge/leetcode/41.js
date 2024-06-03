@@ -14,6 +14,7 @@ function cyclicSort(nums) {
             console.log('temp', temp);
             // 放到目标位置上
             nums[nums[i]] = nums[i];
+            nums[i] = temp;
         }
     }
     console.log('\nnums', nums);
@@ -96,7 +97,7 @@ function f2(nums) {
 }
 
 let params = [1,2,0];
-// params = [1,2,4, 8, 20];
+params = [1,2,4, 8, 20];
 // params = [3,4,-1,1];
 // params = [2,2,3,4,-1,1];
 // params = [1, 2, 4, 7, 8, 9];
