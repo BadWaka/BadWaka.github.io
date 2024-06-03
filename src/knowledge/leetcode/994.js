@@ -34,19 +34,21 @@ function f(nums) {
 
     // 还有好的就一直循环
     let count = 0;
-    let lastBadListLength = 0;
-    while(Object.keys(goodMap).length > 0) {
+    // let lastBadListLength = 0;
+
+    while(Object.keys(goodMap).length > 0 && Object.keys(badMap).length > 0) {
         count++;
 
         // 如果上一次坏的数量没有变化，则认为永远有好的无法被感染
-        if (lastBadListLength === Object.keys(badMap).length) {
-            return -1;
-        }
+        // if (lastBadListLength === Object.keys(badMap).length) {
+        //     return -1;
+        // }
 
         // 记录上一次的 badList length
-        lastBadListLength = Object.keys(badMap).length;
+        // lastBadListLength = Object.keys(badMap).length;
 
         Object.keys(badMap).forEach(key => {
+            delete badMap[key];
             const arr = key.split(',');
             const x = parseInt(arr[0], 10);
             const y = parseInt(arr[1], 10);
@@ -86,12 +88,16 @@ function f(nums) {
     console.log('badMap', badMap);
     console.log('goodMap', goodMap);
 
+    if (Object.keys(goodMap).length > 0) {
+        return -1;
+    }
+
     return count;
 }
 
 let params = [[2,1,1],[1,1,0],[0,1,1]];
 // params = [[0,2]];
 params = [[2,1,1],[0,1,1],[1,0,1]];
-params = [[0]];
+// params = [[0]];
 const res = f(params);
 console.log('\nres', res);
