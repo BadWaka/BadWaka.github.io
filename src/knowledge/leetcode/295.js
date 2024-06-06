@@ -45,6 +45,7 @@ class MedianFinder {
         if (this.isOdd) {
             const mid = Math.floor(this.list.length / 2);
             const val = this.quickSelect(this.list, 0, this.list.length - 1, mid);
+            console.log('val', val);
         }
 
         // this.list = this.list.sort((a, b) => a - b);
