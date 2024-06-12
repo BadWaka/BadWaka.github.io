@@ -2,10 +2,14 @@
 // 完全平方数
 const list = [1, 4, 9, 16, 25, 36, 49, 64, 81];
 
+function numSquares(n) {
+
+}
+
 /**
  * @returns
  */
-function numSquares(n) {
+function numSquares2(n) {
     console.log('\nn', n);
 
     if (n === 0) {
