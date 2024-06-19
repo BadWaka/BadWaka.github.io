@@ -33,6 +33,6 @@ import Article from '@/components/Article.vue';
 
 <style scoped lang="scss">
 .list {
-    width: 1000px;
+    // width: 1000px;
 }
 </style>
