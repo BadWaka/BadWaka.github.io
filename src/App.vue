@@ -5,15 +5,16 @@
     >
         <Tabs/>
         <List/>
+
         <div>
             测试面板
-            <div class="hover-test">
-                <!-- hover 测试 -->
+            <!-- <div class="hover-test">
                 <div class="hover-item">
                     hover 时才出现
                 </div>
-            </div>
-            <AndroidIframeDownload/>
+            </div> -->
+            <!-- <AndroidIframeDownload/> -->
+            <AntDesignVueButton/>
         </div>
     </div>
 </template>
@@ -24,6 +25,7 @@ import {ref} from 'vue';
 import Tabs from '@/components/Tabs.vue';
 import List from '@/pages/list/List.vue';
 import AndroidIframeDownload from '@/knowledge/issues/Android iframe 文件 url 触发下载/index.vue';
+import AntDesignVueButton from '@/knowledge/issues/AntDesignVue 按钮 Button 移动端点击异常/index.vue';
 
 const isShowIframe = ref(false);
 function openIframe() {
@@ -37,7 +39,7 @@ function openIframe() {
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    // align-items: center;
 }
 .hover-test {
     height: 100px;
