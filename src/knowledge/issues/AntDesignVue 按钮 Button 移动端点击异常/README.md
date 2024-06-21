@@ -1,5 +1,13 @@
-# Android iframe 文件 url 触发下载
+# AntDesignVue 按钮 Button 移动端点击异常
 
-android 手机用 iframe 打开一个文件类型的 url 会触发浏览器默认下载行为
+在设置以下样式后，在移动端 ant-btn 按钮会出现
+- Android 和 PC 模拟：点击左半边无法触发点击事件，且闪屏的问题
+- iOS 确认按钮消失，点击取消后确认按钮才出现的问题
+    - iCafe: https://console.cloud.baidu-int.com/devops/icafe/issue/wkpc-bug-64194/show?source=copy-shortcut
+    - cr: https://console.cloud.baidu-int.com/devops/icode/repos/baidu/wenku/flower-web/reviews/112742016/files/base...latest/src/commonStyles/antd.scss
 
-可能得安装额外 pdfjs，如果不行的话，可能需要 Android 下降级处理不能预览
+```css
+.ant-btn:focus {
+    display: contents;
+}
+```
