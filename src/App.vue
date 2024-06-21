@@ -13,8 +13,8 @@
                     hover 时才出现
                 </div>
             </div> -->
-            <!-- <AndroidIframeDownload/> -->
-            <AntDesignVueButton/>
+            <AndroidIframeDownload/>
+            <!-- <AntDesignVueButton/> -->
         </div>
     </div>
 </template>
