@@ -3,6 +3,52 @@
  * @returns
  */
 function f(s, p) {
+    let result = [];
+    let sLen = s.length;
+    let pLen = p.length;
+    if (sLen < pLen) {
+        return [];
+    }
+
+    let pCount = new Array(26).fill(0);
+    let sCount = new Array(26).fill(0);
+
+    for (let i = 0; i < pLen; i++) {
+        const char = p[i];
+        const index = char.charCodeAt(0) - 'a'.charCodeAt(0);
+        pCount[index]++;
+    }
+    console.log(pCount);
+
+    for (let i = 0; i < pLen; i++) {
+        const char = s[i];
+        const index = char.charCodeAt(0) - 'a'.charCodeAt(0);
+        sCount[index]++;
+    }
+    console.log(sCount);
+
+    if (sCount.toString() === pCount.toString()) {
+        result.push(0);
+    }
+
+    for (let i = pLen; i < sLen; i++) {
+        const index = s[i].charCodeAt(0) - 'a'.charCodeAt(0);
+        sCount[index]++;
+        // 当我们将滑动窗口向右移动一个位置时，窗口的左边界位置上的字符会从窗口中移出，因此需要在字符频率计数器中将该字符的计数减 1。
+        // 这个操作确保 sCount 数组始终准确地反映滑动窗口内字符的频率。
+        const index2 = s[i - pLen].charCodeAt(0) - 'a'.charCodeAt(0);
+        sCount[index2]--;
+
+        if (sCount.toString() === pCount.toString()) {
+            result.push(i - pLen + 1);
+        }
+    }
+    console.log(sCount);
+
+    return result;
+}
+
+function f2(s, p) {
     let finalArr = [];
     if (s.length < p.length) {
         return [];
