@@ -3,6 +3,48 @@
  * @returns
  */
 function f(numCourses, prerequisites) {
+    const map = {};
+    for (let i = 0; i < numCourses; i++) {
+        map[i] = [];
+    }
+    prerequisites.forEach(item => {
+        console.log('item', item);
+        map[item[1]].push(item[0]);
+    });
+    console.log('map', map);
+    // const res = isCircle(Object.keys(map), map);
+    // console.log('是否有环 res', res);
+    // return !res;
+}
+
+// dfs 方法
+// 放弃了，还是拓扑排序把
+function isCircle2(arr, map, traveledMap = {}) {
+    console.log('\nisCircle arr', arr, 'map', map, 'traveledMap', traveledMap);
+    if (arr.length === 0) {
+        return false;
+    }
+    for (let i = 0; i < arr.length; i++) {
+        const item = arr[i];
+        // 出现过
+        if (traveledMap[item]) {
+            console.log('出现过');
+            return true;
+        }
+
+        if (map[item].length > 0) {
+            traveledMap[item] = 1;
+            // traveledMap 需要浅复制一下
+            const res = isCircle(map[item], map, {...traveledMap});
+            if (res) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function f2(numCourses, prerequisites) {
 
     console.log('numCourses', numCourses, 'prerequisites', prerequisites);
 
@@ -91,14 +133,17 @@ function f(numCourses, prerequisites) {
 }
 
 let numCourses = 2;
-numCourses = 1;
-numCourses = 3;
+// numCourses = 1;
+// numCourses = 3;
+numCourses = 5;
 let prerequisites = [[1,0]];
-// prerequisites = [[1,0], [0,1]];
+prerequisites = [[0,1]];
+prerequisites = [[1,0], [0,1]];
+prerequisites = [[1,4],[2,4],[3,1],[3,2]];
 // prerequisites = [];
-prerequisites = [[2,1],[1,0]];
-prerequisites = [[0,2],[1,2],[2,0]];
-prerequisites = [[1,0],[1,2],[0,1]];
-prerequisites = [[0,1],[0,2],[1,0]];
+// prerequisites = [[2,1],[1,0]];
+// prerequisites = [[0,2],[1,2],[2,0]];
+// prerequisites = [[1,0],[1,2],[0,1]];
+// prerequisites = [[0,1],[0,2],[1,0]];
 const res = f(numCourses, prerequisites);
 console.log('\nres', res);
