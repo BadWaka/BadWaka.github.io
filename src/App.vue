@@ -47,7 +47,7 @@ function openIframe() {
 }
 
 const imgSrc = ref('');
-imgSrc.value = ``;
+// imgSrc.value = ;
 
 </script>
 
