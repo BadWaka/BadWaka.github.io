@@ -1,13 +1,37 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <!-- <link rel="icon" type="image/svg+xml" href="/icon.jpeg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <title>Blog</title> -->
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="app" class="app"></div>
     <script type="module" src="/src/main.ts"></script>
-  </body>
+    <script>
+        const worker = new Worker('/worker.js');
+
+        worker.addEventListener('error', err => {
+            console.log(err.message);
+        });
+
+        worker.addEventListener('messageerror', err => {
+            console.log(err.message)
+        });
+
+        worker.addEventListener('message', e => {
+            console.log('main e', e);
+        });
+
+        worker.postMessage('wtf');
+
+        // 关闭
+        worker.terminate();
+
+    </script>
+</body>
+
 </html>

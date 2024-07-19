@@ -8,17 +8,6 @@
 
         <img :src="imgSrc" alt="">
 
-        <!-- <div
-            :style="{
-                backgroundImage: `url(${imgSrc})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                backgroundColor: 'red',
-                height: '200px'
-            }"
-        /> -->
-
         <div>
             测试面板
             <!-- <div class="hover-test">
