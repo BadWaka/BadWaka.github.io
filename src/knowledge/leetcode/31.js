@@ -3,6 +3,42 @@
  * @returns
  */
 function f(nums) {
+
+    console.log('nums', nums);
+
+    // 首先从最后一个数开始，从后往前找，找到第一个比它小的数
+    // 交换
+    // 在交换位置后的数组，进行升序排列
+    // 得到的结果就是符合预期的
+
+    // 如果最后一个数前面没有比它小的怎么办？
+    // 那就再从倒数第二个数开始找
+
+    if (nums.length <= 1) {
+        return nums;
+    }
+
+    for (let i = nums.length - 1; i > 0; i--) {
+        console.log('\ni', i, 'nums[i]', nums[i]);
+        for (let j = i - 1; j >= 0; j--) {
+            console.log('j', j, 'nums[j]', nums[j]);
+            if (nums[i] > nums[j]) {
+                [nums[i], nums[j]] = [nums[j], nums[i]];
+                const arr = nums.slice(j + 1).sort();
+                console.log('arr', arr);
+                arr.forEach((item, index) => {
+                    nums[j + 1 + index] = item;
+                });
+                return nums;
+            }
+        }
+    }
+
+    return nums.sort();
+
+}
+
+function f1(nums) {
     console.log('nums', nums);
 
     if (nums.length <= 1) {
@@ -125,10 +161,11 @@ function getAllArrange(nums) {
 
 let params = [1, 2, 3];
 params = [3, 2, 1];
-params = [2, 1, 3];
-params = [1, 3, 2];
-params = [5, 1, 1];
-params = [3,1,4,4,2,3,4,0,0];
+params = [4,2,0,2,3,2,0];
+// params = [2, 1, 3];
+// params = [1, 3, 2];
+// params = [5, 1, 1];
+// params = [3,1,4,4,2,3,4,0,0];
 // params = [1];
 // params = [1, 1, 5];
 const res = f(params);
