@@ -3,6 +3,10 @@
  * @returns
  */
 function f(nums) {
+    console.log('nums', nums);
+}
+
+function f2(nums) {
 
     console.log('nums', nums);
 
