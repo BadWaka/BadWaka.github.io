@@ -4,7 +4,61 @@
  */
 
 function f(nums, target) {
-    const dp = new Array(target + 1).fill([]);
+    if (target <= 0) {
+        return [];
+    }
+    const map = {};
+    const arr = [];
+    for (let i = 0; i < nums.length; i++) {
+        // 大于直接跳过
+        if (nums[i] > target) {
+            continue;
+        }
+        // 等于直接 push 进数组
+        if (nums[i] === target) {
+            arr.push([nums[i]]);
+            map[[nums[i]].join(',')] = true;
+            continue;
+        }
+        // 下一层递归
+        const nextTarget = target - nums[i];
+        if (nextTarget <= 0) {
+            continue;
+        }
+        const res = f(nums, nextTarget);
+        // console.log('res', res, 'nextTarget', nextTarget);
+        if (res.length > 0) {
+            res.forEach(item => {
+                // console.log('item', item);
+                item.push(nums[i]);
+                item = item.sort();
+                const itemStr = item.join(',');
+                if (!map[itemStr]) {
+                    arr.push(item);
+                    map[itemStr] = true;
+                }
+            });
+        }
+    }
+    console.log('arr', arr, 'map', map, 'target', target);
+    return arr;
+}
+
+function f3(nums, target) {
+    console.log('nums', nums, 'target', target);
+
+    const dp = new Array(target + 1);
+    console.log('dp', dp);
+    
+    for (let i = 0; i < nums.length; i++) {
+        console.log('nums[i]', nums[i]);
+        if (nums[i] === target) {
+            if (!dp[target]) {
+                dp[target] = [];
+            }
+            dp[target].push(nums[i]);
+        }
+    }
     console.log('dp', dp);
 }
 
@@ -68,6 +122,8 @@ function f2(nums, target) {
 }
 
 let candidates = [2,3,6,7];
+candidates = [3,4,5];
 let target = 7;
+target = 9;
 const res = f(candidates, target);
 console.log('\nres', res);
