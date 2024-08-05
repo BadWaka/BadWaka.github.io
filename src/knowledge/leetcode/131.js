@@ -14,9 +14,26 @@ function log(obj) {
     }));
 }
 
+// 是否是回文
+function isPalinedrome(s) {
+    return s === s.split('').reverse().join('');
+}
+// console.log(isPalinedrome('ef'));
+
 function partition(s) {
+
+}
+
+/**
+ * 这个函数比较复杂
+ * 可以不管原字符串的字符顺序
+ * 排列出所有可能性
+ * leetcode 的题目出的有歧义
+ * 它并没有说不能修改原字符串的字符顺序
+ */
+function partition3(s) {
     // 首先排序，让相同字符都挨在一起
-    s = s.split('').sort().join('');
+    // s = s.split('').sort().join('');
     // map 里统计每个字符的出现次数
     const map = {};
     for (let i = 0; i < s.length; i++) {
@@ -149,5 +166,6 @@ function findStrArrWithoutChar(char, str) {
 
 let params = 'aab';
 // params = 'abbabb';
+params = 'efe';
 const res = partition(params);
 console.log('\nres', res);
