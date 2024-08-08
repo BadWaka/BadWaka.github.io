@@ -6,7 +6,27 @@ import {
 /**
  * @returns
  */
+
+// 双指针
 function reverseList(head) {
+    head = array2LinkedList(head);
+
+    let cur = head;
+    let prefix = null;
+    let tmp = cur.next;
+    while(cur) {
+        cur.next = prefix;
+        prefix = cur;
+        cur = tmp;
+        if (cur) {
+            tmp = cur.next;
+        }
+    }
+    return prefix;
+}
+
+// 额外数组
+function reverseList2(head) {
     head = array2LinkedList(head);
     // console.log(head);
     let arr = [head];
