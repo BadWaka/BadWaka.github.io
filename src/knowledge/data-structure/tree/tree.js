@@ -22,7 +22,7 @@ export function TreeNode(val, left, right) {
  * @param {Array} nums
  * @returns
  */
-export function genBinaryTree(nums) {
+export function genBinaryTree(nums, isParent = false) {
     if (nums === null || nums.length === 0 || nums[0] === null) {
         return null;
     }
@@ -39,6 +39,9 @@ export function genBinaryTree(nums) {
             }
             else {
                 node.left = new TreeNode(item);
+                if (isParent) {
+                    node.left.parent = node;
+                }
                 queue.push(node.left);
             }
         }
@@ -48,6 +51,9 @@ export function genBinaryTree(nums) {
             }
             else {
                 node.right = new TreeNode(item);
+                if (isParent) {
+                    node.right.parent = node;
+                }
                 queue.push(node.right);
             }
             queue.shift();
