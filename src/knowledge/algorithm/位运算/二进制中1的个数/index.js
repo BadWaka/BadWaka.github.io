@@ -41,16 +41,24 @@ function binary1NumCount(n) {
     // return count;
 
     // 标志位向左移位
+    // let count = 0;
+    // let flag = 1;
+    // while(flag) {
+    //     console.log('flag', flag);
+    //     if (n & flag) {
+    //         count++;
+    //     }
+    //     flag = flag << 1;
+    // }
+    // console.log('flag', flag);
+    // return count;
+
+    // 把整数 -1，然后和整数做与运算；每做一次会使整数二进制表示最右边的 1 变为 0
     let count = 0;
-    let flag = 1;
-    while(flag) {
-        console.log('flag', flag);
-        if (n & flag) {
-            count++;
-        }
-        flag = flag << 1;
+    while(n) {
+        count++;
+        n = n & (n - 1);
     }
-    console.log('flag', flag);
     return count;
 }
 
