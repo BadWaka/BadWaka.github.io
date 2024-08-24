@@ -23,29 +23,27 @@ function isMatch(str, regExp) {
                 }
                 // 正则要 +2，因为下一位是 *，再下一位才能找到下一个有意义的正则符号
                 pR += 2;
+                continue;
             }
             // 后一位不是 *
-            else {
-                // 直接判断是否与字符串相等
-                const charS = str[pS];
-                // 如果相等，双指针都++，继续循环
-                if (charS === charR) {
-                    pS++;
-                    pR++;
-                    continue;
-                }
-                // 如果不相等，直接 return false
-                return false;
+            // 直接判断是否与字符串相等
+            const charS = str[pS];
+            // 如果相等，双指针都++，继续循环
+            if (charS === charR) {
+                pS++;
+                pR++;
+                continue;
             }
+            // 如果不相等，直接 return false
+            return false;
         }
         // 如果是 .
-        else {
-            // 直接双指针++然后继续就行
-            pS++;
-            pR++;
-        }
+        // 直接双指针++然后继续就行
+        pS++;
+        pR++;
     }
     console.log('pS', pS, 'pR', pR);
+    // 双指针都移动到了最后的位置，就代表匹配成功
     if (pS === str.length && pR === regExp.length) {
         return true;
     }
