@@ -26,6 +26,8 @@ import {
  * 边界条件：
  * 如果 k 大于链表的长度，return null
  * 如果链表是空的，return null
+ * 如果 k 为 0，return null
+ * 如果 k 为 1，return root
  *
  * 时间复杂度 O(n)
  * 空间复杂度 O(1)
@@ -33,6 +35,9 @@ import {
 function reverseKNode(root, k) {
     log('', root);
     if (!root) {
+        return null;
+    }
+    if (k === 0) {
         return null;
     }
     if (k === 1) {
