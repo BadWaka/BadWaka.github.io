@@ -42,6 +42,52 @@ function isBIsAChildTree(a, b) {
     return false;
 }
 
+/**
+ * 思路：
+ * 需要实现一个函数，传入 a,b 两个树，判断它们是否相等
+ */
+var isSubStructure = function(A, B) {
+    if (!A) {
+        return false;
+    }
+    if (!B) {
+        return false;
+    }
+    if (isSameStructure(A, B)) {
+        return true;
+    }
+    const resLeft = isSubStructure(A.left, B);
+    const resRight = isSubStructure(A.right, B);
+    if (resLeft || resRight) {
+        return true;
+    }
+    return false;
+};
+
+function isSameStructure(A, B) {
+    if (!A && !B) {
+        return false;
+    }
+    if (!A || !B) {
+        return false;
+    }
+    if (A.val === B.val) {
+        let resLeft = true;
+        let resRight = true;
+        if (B.left) {
+            resLeft = isSameStructure(A.left, B.left);
+        }
+        if (B.right) {
+            resRight = isSameStructure(A.right, B.right);
+        }
+        if (resLeft && resRight) {
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
+
 let a = {
     val: 8,
     left: {
@@ -64,8 +110,6 @@ let a = {
     }
 };
 
-// node2.next.next.next = node;
-
 let b = {
     val: 8,
     left: {
@@ -76,5 +120,5 @@ let b = {
     }
 };
 
-const res = isBIsAChildTree(a, b);
+const res = isSubStructure(a, b);
 log('res', res);
