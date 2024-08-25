@@ -4,8 +4,9 @@ import {
 } from '../../../algorithm/util.js';
 
 /**
+ * 三个指针
  */
-function reverse(root) {
+function reverse1(root) {
     log('', root);
     if (!root || !root.next) {
         return root;
@@ -26,6 +27,13 @@ function reverse(root) {
         }
     }
     return prefix;
+}
+
+/**
+ * 用递归实现
+ */
+function reverse(root) {
+
 }
 
 // let node2 = {
