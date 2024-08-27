@@ -1,43 +1,50 @@
 
 /**
- * 思路：
- * 遍历字符串，把每个字符放进 path 数组里，剩下的字符串拼起来继续递归
- * 如果 path 的长度等于字符串的长度，终止递归
- * 每次 dfs 完要 path.pop()，这是回溯的关键
- *
- * 如果有重复字母，需要用到 hashMap，以便在 O1 时间判断是否有已经相同的值
+ * 思路：暴力方法
+ * 把字符串拆成每个字符
+ * 按字符数开始组合
+ * 1个、2个、3个 直到小于字符串长度
  */
-function fullPermutation(str) {
 
-    // 避免与 dfs 的形参重名
-    let fStr = str;
-    // 如果有重复的，就用 map 存一下
-    let map = {};
+/**
+ * 思路：
+ * 遍历字符串
+ * 把当前字符和上一次传进来的合并，并把右边剩下的字符串扔进去递归
+ */
+function fullCombinations(str) {
     let arr = [];
 
-    function dfs(str, path) {
-        if (path.length === fStr.length) {
-            arr.push(path.join(''));
+    function dfs(cur, restStr) {
+        console.log('dfs cur', cur, 'restStr', restStr);
+        if (cur) {
+            arr.push(cur);
+        }
+        if (!restStr) {
             return;
         }
-
-        for (let i = 0; i < str.length; i++) {
-            const char = str[i];
-            const restStr = str.slice(0, i) + '' + str.slice(i + 1);
-            console.log('char', char, 'restStr', restStr);
-            path.push(char);
-            dfs(restStr, path);
-            // 回溯
-            path.pop();
+        for (let i = 0; i < restStr.length; i++) {
+            console.log('restStr[i]', restStr[i]);
+            dfs(cur + '' + restStr[i], restStr.slice(i + 1));
         }
     }
 
-    dfs(str, []);
-
+    dfs('', str);
     return arr;
 }
 
-let str = 'abcd';
+function fullCombinations1(str) {
+    const result = [];
+    function generateCombinations(current, remaining) {
+      result.push(current);
+      for (let i = 0; i < remaining.length; i++) {
+        generateCombinations(current + remaining[i], remaining.slice(i + 1));
+      }
+    }
+    generateCombinations('', str);
+    return result;
+  }
 
-const res = fullPermutation(str);
+let str = 'abc';
+
+const res = fullCombinations(str);
 console.log('res', res);
