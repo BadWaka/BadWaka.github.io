@@ -1,15 +1,13 @@
 
 /**
  * 思路：
- * 暴力法
- * 遍历从 1~n 所有数，转换为字符串，遍历每个字符，判断是否等于 '1'
- * 如果等于 count++
- * 最后 return count
+ * if n < 10, 字符串长度等于 n + 1
+ * if 10 <= n < 100, 字符串长度等于 10 + 2 * (n + 1 - 10)
  */
-function times1(n) {
+function findPositionNum(n) {
 }
 
-let n = 13;
+let n = 27;
 
-const res = times1(n);
+const res = findPositionNum(n);
 console.log('res', res);
